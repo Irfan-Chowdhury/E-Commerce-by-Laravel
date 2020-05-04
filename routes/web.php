@@ -28,8 +28,9 @@ Route::get('/admin/Change/Password','AdminController@ChangePassword')->name('adm
 Route::post('/admin/password/update','AdminController@Update_pass')->name('admin.password.update');
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
-        //========= Admin ======
-//Categoy--
+        //======================= Admin ===========================
+
+//--Categoy--
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     
     Route::group(['namespace' => 'Category'], function () {
@@ -39,4 +40,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('edit/category/{id}','CategoryController@editCategory');
         Route::post('update/category/{id}','CategoryController@updateCategory');
     });
+
+    //--brands--
+    Route::group(['prefix' => 'brand','namespace' => 'Brand'], function () {
+        Route::get('/', 'BrandController@brand')->name('brand');
+        Route::post('store', 'BrandController@brandStore')->name('brand.store'); 
+        Route::get('delete/{id}','BrandController@brandDelete')->name('brand.delete'); ;
+        Route::get('edit/{id}','BrandController@brandEdit')->name('brand.edit'); ; 
+        Route::post('update/{id}','BrandController@brandUpdate')->name('brand.update'); ; 
+    });
+
+
 });
