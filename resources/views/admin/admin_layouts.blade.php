@@ -18,7 +18,7 @@
     <link href="{{ asset('backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('backend/css/starlight.css') }}">
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('backend/css/starlight.css')}}">
     <link href="{{ asset('backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">

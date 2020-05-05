@@ -4069,9 +4069,21 @@
 							<div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
 						</div>
 						<div class="newsletter_content clearfix">
-							<form action="#" class="newsletter_form">
-								<input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
-								<button class="newsletter_button">Subscribe</button>
+							 {{-- For Newlater Error--}}
+							 @if ($errors->any())
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									@foreach ($errors->all() as $error)
+										<strong>Error !! </strong> {{ $error }}
+									@endforeach
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							@endif
+							<form action="{{route('newslater.store')}}" class="newsletter_form" method="POST">
+								@csrf
+								<input type="email" name="email" class="newsletter_input" required placeholder="Enter your email address">
+								<button type="submit" class="newsletter_button">Subscribe</button>
 							</form>
 							<div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
 						</div>

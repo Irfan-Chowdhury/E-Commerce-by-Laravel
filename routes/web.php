@@ -66,5 +66,24 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('edit/{id}','CouponController@couponEdit')->name('coupon.edit');
         Route::post('update/{id}','CouponController@couponUpdate')->name('coupon.update');
     });
+
+    //--Newslater--
+    Route::group(['prefix' => 'newslater'], function () {
+        Route::get('/','NewslaterController@newslater')->name('newslater');
+        Route::get('/delete/{id}','NewslaterController@newslaterDelete')->name('newslater.delete');  
+    });
+    
 });
 
+
+
+
+// ========= Frontend part all in here =========
+
+Route::group(['namespace' => 'User'], function () {
+    Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
+});
+
+
+
+// php artisan make:migration create_users_table --create=users

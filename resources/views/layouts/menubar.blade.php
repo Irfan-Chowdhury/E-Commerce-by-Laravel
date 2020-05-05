@@ -1,5 +1,16 @@
 <nav class="main_nav">
     <div class="container">
+        {{-- For Newlater Error--}}
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    <strong>Error !! </strong> {{ $error }}
+                @endforeach
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <div class="row">
             <div class="col">
                 
@@ -42,8 +53,7 @@
                         </ul>
                     </div>
 
-                    <!-- Main Nav Menu -->
-
+                <!-- Main Nav Menu -->
                     <div class="main_nav_menu ml-auto">
                         <ul class="standard_dropdown main_nav_dropdown">
                             <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
