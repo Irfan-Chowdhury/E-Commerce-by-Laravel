@@ -38,9 +38,6 @@
           </div><!-- card --> 
       </div><!-- sl-pagebody -->
 
-
-
-
 <!--modal-->
     <!-- LARGE MODAL -->
     <div id="modaldemo3" class="modal fade">

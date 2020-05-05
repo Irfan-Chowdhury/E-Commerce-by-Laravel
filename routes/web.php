@@ -30,9 +30,8 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
         //======================= Admin ===========================
 
-//--Categoy--
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-    
+    //--Categoy--
     Route::group(['namespace' => 'Category'], function () {
         Route::get('categories','CategoryController@category')->name('categories');
         Route::post('store/category', 'CategoryController@storeCatgory')->name('store.category'); //video- @storecatgory
@@ -40,15 +39,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('edit/category/{id}','CategoryController@editCategory');
         Route::post('update/category/{id}','CategoryController@updateCategory');
     });
-
-    //--brands--
+    
+    //--Subcategory--
+    Route::group(['prefix' => 'subcategory','namespace' => 'Subcategory'], function () {
+        Route::get('/', 'SubCategoryController@subCategory')->name('subcategory');
+        Route::post('store', 'SubCategoryController@subCategoryStore')->name('subcategory.store'); 
+        Route::get('delete/{id}','SubCategoryController@subCategoryDelete')->name('subcategory.delete');
+        Route::get('edit/{id}','SubCategoryController@subCategoryEdit')->name('subcategory.edit');
+        Route::post('update/{id}','SubCategoryController@subCategoryUpdate')->name('subcategory.update');
+    });
+    
+    //--Brand--
     Route::group(['prefix' => 'brand','namespace' => 'Brand'], function () {
         Route::get('/', 'BrandController@brand')->name('brand');
         Route::post('store', 'BrandController@brandStore')->name('brand.store'); 
-        Route::get('delete/{id}','BrandController@brandDelete')->name('brand.delete'); ;
-        Route::get('edit/{id}','BrandController@brandEdit')->name('brand.edit'); ; 
-        Route::post('update/{id}','BrandController@brandUpdate')->name('brand.update'); ; 
+        Route::get('delete/{id}','BrandController@brandDelete')->name('brand.delete'); 
+        Route::get('edit/{id}','BrandController@brandEdit')->name('brand.edit');
+        Route::post('update/{id}','BrandController@brandUpdate')->name('brand.update');
     });
-
-
 });
+
