@@ -22,6 +22,7 @@
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('backend/css/starlight.css')}}">
     <link href="{{ asset('backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
+    {{-- For Editor --}}
     <link href="{{ asset('backend/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
   </head>
 
@@ -54,10 +55,11 @@
     <script src="{{ asset('backend/lib/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('backend/lib/datatables-responsive/dataTables.responsive.js') }}"></script>
     <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script> <!--For Editor-->
     <script src="{{ asset('backend/js/starlight.js') }}"></script>
-    <script src="{{ asset('backend/lib/medium-editor/medium-editor.js') }}"></script>
-     <script>
+    <script src="{{ asset('backend/lib/medium-editor/medium-editor.js') }}"></script> <!--For Editor-->
+    <!--For Editor-->
+    <script>
       $(function(){
         'use strict';
 

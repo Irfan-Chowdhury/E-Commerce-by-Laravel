@@ -73,6 +73,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/delete/{id}','NewslaterController@newslaterDelete')->name('newslater.delete');  
     });
     
+    //--Products--
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/', 'ProductController@index')->name('product.index'); //there- all.product
+        Route::get('/create', 'ProductController@create')->name('product.create'); //there- add.product
+        //get Sub-Category by ajax
+        Route::get('get/subcategory/{category_id}','ProductController@getSubCategory'); //Ajax
+    });
+    
 });
 
 
@@ -87,3 +95,16 @@ Route::group(['namespace' => 'User'], function () {
 
 
 // php artisan make:migration create_users_table --create=users
+
+
+
+
+
+// Route::post('/store', 'ProductController@store')->name('product.store');
+// Route::get('inactive/product/{id}','ProductController@Inactive'); 
+// Route::get('active/product/{id}','ProductController@Active');
+// Route::get('delete/product/{id}','ProductController@DeleteProduct');
+// Route::get('view/product/{id}','ProductController@ViewProduct');
+// Route::get('edit/product/{id}','ProductController@EditProduct');
+// Route::post('update/product/withoutphoto/{id}','ProductController@UpdateProductWithoutPhoto');
+// Route::post('update/product/photo/{id}','ProductController@UpdateProductPhoto');  
