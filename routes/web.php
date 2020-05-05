@@ -32,8 +32,8 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     //--Categoy--
-    Route::group(['namespace' => 'Category'], function () {
-        Route::get('categories','CategoryController@category')->name('categories');
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/','CategoryController@category')->name('categories');
         Route::post('store/category', 'CategoryController@storeCatgory')->name('store.category'); //video- @storecatgory
         Route::get('delete/category/{id}','CategoryController@deleteCategory');
         Route::get('edit/category/{id}','CategoryController@editCategory');
@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     });
     
     //--Subcategory--
-    Route::group(['prefix' => 'subcategory','namespace' => 'Subcategory'], function () {
+    Route::group(['prefix' => 'subcategory'], function () {
         Route::get('/', 'SubCategoryController@subCategory')->name('subcategory');
         Route::post('store', 'SubCategoryController@subCategoryStore')->name('subcategory.store'); 
         Route::get('delete/{id}','SubCategoryController@subCategoryDelete')->name('subcategory.delete');
@@ -50,12 +50,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     });
     
     //--Brand--
-    Route::group(['prefix' => 'brand','namespace' => 'Brand'], function () {
+    Route::group(['prefix' => 'brand'], function () {
         Route::get('/', 'BrandController@brand')->name('brand');
         Route::post('store', 'BrandController@brandStore')->name('brand.store'); 
         Route::get('delete/{id}','BrandController@brandDelete')->name('brand.delete'); 
         Route::get('edit/{id}','BrandController@brandEdit')->name('brand.edit');
         Route::post('update/{id}','BrandController@brandUpdate')->name('brand.update');
+    });
+    
+    //--Coupon--
+    Route::group(['prefix' => 'coupon'], function () {
+        Route::get('/', 'CouponController@coupon')->name('coupon');
+        Route::post('store', 'CouponController@couponStore')->name('coupon.store'); 
+        Route::get('delete/{id}','CouponController@couponDelete')->name('coupon.delete'); 
+        Route::get('edit/{id}','CouponController@couponEdit')->name('coupon.edit');
+        Route::post('update/{id}','CouponController@couponUpdate')->name('coupon.update');
     });
 });
 

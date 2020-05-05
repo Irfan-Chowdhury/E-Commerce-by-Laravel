@@ -46,7 +46,7 @@
           <li class="nav-item"><a href="{{ route('brand') }}" class="nav-link">Brand</a></li> 
         </ul>
 
-        
+        <!-- Coupon -->
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -56,7 +56,7 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           {{-- <li class="nav-item"><a href="{{ route('coupons') }}" class="nav-link">Coupon</a></li> --}}
-          <li class="nav-item"><a href="#" class="nav-link">Coupon</a></li>
+          <li class="nav-item"><a href="{{route('coupon')}}" class="nav-link">Coupon</a></li>
 
         </ul>
 
