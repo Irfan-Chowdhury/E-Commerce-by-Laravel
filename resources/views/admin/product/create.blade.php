@@ -12,8 +12,17 @@
       </nav>
       <div class="sl-pagebody">
       	   <div class="card pd-20 pd-sm-40">
-          <h6 class="card-body-title">New Product Add <a href="#" class="btn btn-success btn-sm pull-right">All Product</a></h6>
+          <h6 class="card-body-title">New Product Add <a href="{{route('product.index')}}" class="btn btn-success btn-sm pull-right">All Product</a></h6>
           <p class="mg-b-20 mg-sm-b-30">New product add form</p>
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
           <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
           	@csrf
           
@@ -22,25 +31,25 @@
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="product_name"  >
+                  <input class="form-control" type="text" name="product_name" required>
                 </div>
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Product Code: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="product_code"  >
+                  <input class="form-control" type="text" name="product_code" required >
                 </div>
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Quantity <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="product_quantity"  >
+                  <input class="form-control" type="number" name="product_quantity" required >
                 </div>
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2" data-placeholder="Choose Category" name="category_id">
+                  <select class="form-control select2" data-placeholder="Choose Category" name="category_id" required>
                     <option label="-- Choose Category --"></option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -51,7 +60,7 @@
               <div class="col-lg-4">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2" name="subcategory_id">
+                  <select class="form-control select2" name="subcategory_id" required>
                     
                   </select>
                 </div>
@@ -59,7 +68,7 @@
               <div class="col-lg-4">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2" data-placeholder="Choose country" name="brand_id">
+                  <select class="form-control select2" data-placeholder="Choose Brand" name="brand_id" required>
                     <option label="-- Choose Brand --"></option>
                     @foreach($brands as $brand)
                     <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
@@ -67,22 +76,28 @@
                   </select>
                 </div>
               </div><!-- col-4 -->
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <div class="form-group">
                   <label class="form-control-label">Product Size: <span class="tx-danger">*</span></label><br>
-                  <input class="form-control" type="text" name="product_size" id="size" data-role="tagsinput"> <!--Important- for multiple select in input field-->
+                  <input class="form-control" type="text" name="product_size" id="size" data-role="tagsinput" > <!--Important- for multiple select in input field-->
                 </div>
               </div><!-- col-4 -->
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <div class="form-group">
                   <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label><br>
-                  <input class="form-control lg-4" type="text" name="product_color" data-role="tagsinput" id="color" > <!--Important- for multiple select in input field-->
+                  <input class="form-control lg-4" type="text" name="product_color" data-role="tagsinput" id="color"> <!--Important- for multiple select in input field-->
                 </div>
               </div><!-- col-4 -->
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <div class="form-group">
                   <label class="form-control-label">Selling Price <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="number" name="selling_price"  placeholder="Selling Price">
+                  <input class="form-control" type="number" name="selling_price"  placeholder="Selling Price" required>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label">Discount Price</label>
+                  <input class="form-control" type="number" name="discount_price"  placeholder="Discount Price">
                 </div>
               </div><!-- col-4 -->
 

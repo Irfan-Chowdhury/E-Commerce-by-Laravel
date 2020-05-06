@@ -84,7 +84,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('active/{id}','ProductController@active')->name('product.active');   
         Route::get('delete/{id}','ProductController@productDelete')->name('product.delete');
         Route::get('view/{id}','ProductController@productView')->name('product.view');
-
+        Route::get('edit/{id}','ProductController@productEdit')->name('product.edit');
+        Route::post('update/withoutphoto/{id}','ProductController@productUpdateWithoutPhoto')->name('product.update.without_photo');
+        Route::post('update/photo/{id}','ProductController@productPhotoUpdate')->name('product.update.photo');  
     });
     
 });
@@ -101,12 +103,3 @@ Route::group(['namespace' => 'User'], function () {
 
 
 // php artisan make:migration create_users_table --create=users
-
-
-
-
-
-
-// Route::get('edit/product/{id}','ProductController@EditProduct');
-// Route::post('update/product/withoutphoto/{id}','ProductController@UpdateProductWithoutPhoto');
-// Route::post('update/product/photo/{id}','ProductController@UpdateProductPhoto');  

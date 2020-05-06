@@ -37,8 +37,17 @@ class CreateProductsTable extends Migration
             $table->string('image_one')->nullable();
             $table->string('image_two')->nullable();
             $table->string('image_three')->nullable();
-            $table->string('buyone_getone')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
+
+
+            // $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            // $table->foreign('brand_id')->references('id')->on('brands');
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 

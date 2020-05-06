@@ -46,12 +46,14 @@ class CategoryController extends Controller
     public function deleteCategory($id)
     {
         DB::table('categories')->where('id',$id)->delete();
+        $category->delete();
+
     	$notification = array(
             'messege'=>'Category Successfully Deleted',
             'alert-type'=>'success'
         );
 
-        return redirect()->back()->with($notification);
+        return Redirect()->route('categories')->with($notification);
     }
 
     public function editCategory($id)

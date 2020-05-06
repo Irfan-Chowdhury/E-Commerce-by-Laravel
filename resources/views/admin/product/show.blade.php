@@ -79,6 +79,13 @@
                   <strong>{{ $product->selling_price }}</strong>
                 </div>
               </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Discount Price <span class="tx-danger">*</span></label>
+                   <br>
+                  <strong> @if($product->discount_price) {{ $product->discount_price }} @else 0 @endif</strong>
+                </div>
+              </div><!-- col-4 -->
 
               <div class="col-lg-12">
               	<div class="form-group" style="border:1px solid grey;padding:10px; ">

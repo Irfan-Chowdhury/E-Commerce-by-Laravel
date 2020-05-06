@@ -27,8 +27,8 @@
                     <td>{{ $row->id }}</td>
                     <td>{{ $row->category_name }}</td>
                     <td>
-                        <a href="{{ URL::to('admin/edit/category/'.$row->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{{ URL::to('admin/delete/category/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                        <a href="{{ URL::to('admin/categories/edit/category/'.$row->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ URL::to('admin/categories/delete/category/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                     </td>
                   </tr>
                   @endforeach
