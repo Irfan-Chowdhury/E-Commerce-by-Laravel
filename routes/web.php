@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/create', 'ProductController@create')->name('product.create'); //there- add.product
         //get Sub-Category by ajax
         Route::get('get/subcategory/{category_id}','ProductController@getSubCategory'); //Ajax
+        Route::post('/store', 'ProductController@store')->name('product.store');
     });
     
 });
@@ -100,7 +101,6 @@ Route::group(['namespace' => 'User'], function () {
 
 
 
-// Route::post('/store', 'ProductController@store')->name('product.store');
 // Route::get('inactive/product/{id}','ProductController@Inactive'); 
 // Route::get('active/product/{id}','ProductController@Active');
 // Route::get('delete/product/{id}','ProductController@DeleteProduct');

@@ -33,10 +33,11 @@ class CreateProductsTable extends Migration
             $table->integer('mid_slider')->nullable();
             $table->integer('hot_new')->nullable();
             $table->integer('trend')->nullable();
+            $table->integer('buyone_getone')->nullable();
             $table->string('image_one')->nullable();
             $table->string('image_two')->nullable();
             $table->string('image_three')->nullable();
-            $table->integer('status')->nullable();
+            $table->string('buyone_getone')->nullable();
             $table->timestamps();
         });
     }
