@@ -132,8 +132,21 @@ class ProductController extends Controller
             'messege'=>'Successfully Product Deleted ',
             'alert-type'=>'success'
         );
-        
+
         return Redirect()->back()->with($notification);
+    }
+
+    public function productView($id)
+    {
+        $product = DB::table('products')
+                    ->join('categories','products.category_id','categories.id')
+                    ->join('subcategories','products.subcategory_id','subcategories.id')
+                    ->join('brands','products.brand_id','brands.id')
+                    ->select('products.*','categories.category_name','subcategories.subcategory_name','brands.brand_name')
+                    ->where('products.id',$id)
+                    ->first();
+
+        return view('admin.product.show',compact('product'));
     }
 }
 

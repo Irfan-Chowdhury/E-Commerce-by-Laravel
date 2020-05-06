@@ -43,7 +43,7 @@
                   	@endif
                   </td>
                   <td>
-                    <a href="#" class="btn btn-sm btn-warning" title="View"><i class="fa fa-eye"></i></a>
+                    <a href="{{route('product.view',$row->id)}}" class="btn btn-sm btn-warning" title="View"><i class="fa fa-eye"></i></a>
                   	<a href="#" class="btn btn-sm btn-info" title="Edit"><i class="fa fa-edit"></i></a>
                     <a href="{{route('product.delete',$row->id)}}" class="btn btn-sm btn-danger" id="delete" title="Delete"><i class="fa fa-trash"></i></a>
 

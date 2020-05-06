@@ -73,7 +73,7 @@
           <li class="nav-item"><a href="{{route('product.index')}}" class="nav-link">All Product</a></li>
         </ul>
 
-          <a href="#" class="sl-menu-link">
+          {{-- <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Blogs</span>
@@ -81,13 +81,10 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          {{-- <li class="nav-item"><a href="{{route('postcats')}}" class="nav-link">PostCategory</a></li>
+          <li class="nav-item"><a href="{{route('postcats')}}" class="nav-link">PostCategory</a></li>
           <li class="nav-item"><a href="{{ route('add.post') }}" class="nav-link">Add Post</a></li>
-          <li class="nav-item"><a href="{{ route('all.post') }}" class="nav-link">All Post</a></li> --}}
-          <li class="nav-item"><a href="#" class="nav-link">PostCategory</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Add Post</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">All Post</a></li>
-        </ul>
+          <li class="nav-item"><a href="{{ route('all.post') }}" class="nav-link">All Post</a></li>
+        </ul> --}}
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">

@@ -83,6 +83,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('inactive/{id}','ProductController@inactive')->name('product.inactive'); 
         Route::get('active/{id}','ProductController@active')->name('product.active');   
         Route::get('delete/{id}','ProductController@productDelete')->name('product.delete');
+        Route::get('view/{id}','ProductController@productView')->name('product.view');
 
     });
     
@@ -106,7 +107,6 @@ Route::group(['namespace' => 'User'], function () {
 
 
 
-// Route::get('view/product/{id}','ProductController@ViewProduct');
 // Route::get('edit/product/{id}','ProductController@EditProduct');
 // Route::post('update/product/withoutphoto/{id}','ProductController@UpdateProductWithoutPhoto');
 // Route::post('update/product/photo/{id}','ProductController@UpdateProductPhoto');  
