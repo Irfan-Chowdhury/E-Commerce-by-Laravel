@@ -19,7 +19,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('admin.product.index');   
+        $product=DB::table('products')
+                ->join('categories','products.category_id','categories.id')
+                ->join('brands','products.brand_id','brands.id')
+                ->select('products.*','categories.category_name','brands.brand_name')
+                ->orderBy('categories.id','DESC')
+                ->get();
+        return view('admin.product.index',compact('product'));
     }
 
 
@@ -88,6 +94,46 @@ class ProductController extends Controller
 
             return Redirect()->back()->with($notification);   
         }
+    }
+
+    public function inactive($id)
+    {
+         DB::table('products')->where('id',$id)->update(['status'=> 0]);
+         $notification=array(
+            'messege'=>'Successfully Product Inactive ',
+            'alert-type'=>'success'
+        );
+
+        return Redirect()->back()->with($notification);  
+    }
+
+    public function active($id)
+    {
+         DB::table('products')->where('id',$id)->update(['status'=> 1]);
+         $notification=array(
+            'messege'=>'Successfully Product Aactive ',
+            'alert-type'=>'success'
+        );
+
+        return Redirect()->back()->with($notification);
+    }
+
+    public function productDelete($id)
+    {
+        $product = DB::table('products')->where('id',$id)->first();
+        $image1  = $product->image_one;
+        $image2  = $product->image_two;
+        $image3  = $product->image_three;
+        unlink($image1);
+        unlink($image2);
+        unlink($image3);
+        DB::table('products')->where('id',$id)->delete();
+        $notification=array(
+            'messege'=>'Successfully Product Deleted ',
+            'alert-type'=>'success'
+        );
+        
+        return Redirect()->back()->with($notification);
     }
 }
 

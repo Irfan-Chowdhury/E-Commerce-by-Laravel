@@ -80,6 +80,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         //get Sub-Category by ajax
         Route::get('get/subcategory/{category_id}','ProductController@getSubCategory'); //Ajax
         Route::post('/store', 'ProductController@store')->name('product.store');
+        Route::get('inactive/{id}','ProductController@inactive')->name('product.inactive'); 
+        Route::get('active/{id}','ProductController@active')->name('product.active');   
+        Route::get('delete/{id}','ProductController@productDelete')->name('product.delete');
+
     });
     
 });
@@ -101,9 +105,7 @@ Route::group(['namespace' => 'User'], function () {
 
 
 
-// Route::get('inactive/product/{id}','ProductController@Inactive'); 
-// Route::get('active/product/{id}','ProductController@Active');
-// Route::get('delete/product/{id}','ProductController@DeleteProduct');
+
 // Route::get('view/product/{id}','ProductController@ViewProduct');
 // Route::get('edit/product/{id}','ProductController@EditProduct');
 // Route::post('update/product/withoutphoto/{id}','ProductController@UpdateProductWithoutPhoto');
