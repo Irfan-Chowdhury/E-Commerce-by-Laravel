@@ -88,6 +88,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('update/withoutphoto/{id}','ProductController@productUpdateWithoutPhoto')->name('product.update.without_photo');
         Route::post('update/photo/{id}','ProductController@productPhotoUpdate')->name('product.update.photo');  
     });
+
+    Route::group(['prefix' => 'blog'], function () {
+        //Category of Post
+        Route::get('/category/index', 'BlogController@categoryIndex')->name('blog.category.index');
+        Route::post('/category/store', 'BlogController@categoryStore')->name('blog.category.store');
+        Route::get('/category/destroy/{id}','BlogController@categoryDestroy')->name('blog.category.destroy');
+        Route::get('/category/edit/{id}','BlogController@categoryEdit')->name('blog.category.edit');
+        Route::post('/category/update/{id}','BlogController@categoryUpdate')->name('blog.category.update');
+        //Post
+        Route::get('/post/index', 'BlogController@index')->name('blog.post.index');
+        Route::get('/post/create', 'BlogController@create')->name('blog.post.create');
+        Route::post('/post/store', 'BlogController@store')->name('blog.post.store');
+        Route::get('/post/destroy/{id}','BlogController@destroy')->name('blog.post.destroy');
+        Route::get('/post/edit/{id}','BlogController@edit')->name('blog.post.edit');
+        Route::post('/post/update/{id}','BlogController@update')->name('blog.post.update');
+    });
     
 });
 

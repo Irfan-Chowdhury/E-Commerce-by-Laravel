@@ -43,17 +43,26 @@ class CategoryController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function deleteCategory($id)
+    public function deleteCategory($id) 
     {
-        DB::table('categories')->where('id',$id)->delete();
+        $category = Category::find($id);
+
+        if (($category->subcategories()->count()) || ($category->products()->count())) //For Database Relationship Maintain
+        {
+            $notification = array(
+                'messege'   =>'This Parent row has Child records',
+                'alert-type'=>'error'
+            );
+            return Redirect()->back()->with($notification);
+        }
+
         $category->delete();
 
-    	$notification = array(
+        $notification = array(
             'messege'=>'Category Successfully Deleted',
             'alert-type'=>'success'
         );
-
-        return Redirect()->route('categories')->with($notification);
+        return Redirect()->back()->with($notification);    	
     }
 
     public function editCategory($id)
@@ -94,3 +103,7 @@ class CategoryController extends Controller
     }
 
 }
+
+
+// Parent-Child Delete
+// https://quickadminpanel.com/blog/one-to-many-with-soft-deletes-deleting-parent-restrict-or-cascade/
