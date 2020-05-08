@@ -118,4 +118,7 @@ Route::group(['namespace' => 'User'], function () {
 
 
 // php artisan make:migration create_users_table --create=users
-// 13:15
+
+
+// ---- Package ----
+// 1. Shopping Cart: https://packagist.org/packages/bumbummen99/shoppingcart
