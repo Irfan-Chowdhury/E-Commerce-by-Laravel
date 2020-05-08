@@ -1,3 +1,17 @@
+@php  
+  $categories    = DB::table('categories')->get();
+
+  $subcategories = DB::table('subcategories')->get();
+
+  $slider        = DB::table('products') 
+                    ->select('products.*','brands.brand_name')
+                    ->join('brands','products.brand_id','brands.id')
+                    ->where('products.main_slider', 1)
+                    ->orderBy('id','DESC')
+                    ->first()
+
+@endphp
+
 <nav class="main_nav">
     <div class="container">
         {{-- For Newlater Error--}}
@@ -24,34 +38,42 @@
                             <div class="cat_menu_text">categories</div>
                         </div>
 
+                        <!-- 1st Way -->
+
+                        {{-- <ul class="cat_menu">
+                            @foreach( $categories as $category)
+                                @php  
+                                    $subcategories = DB::table('subcategories')->where('category_id',$category->id)->get();
+                                @endphp
+                                <li class="hassubs">
+                                    <a href="#">{{ $category->category_name }}  @if($subcategories) <i class="fa fa-chevron-right"></i> @endif</a>
+                                    <ul>
+                                        
+                                        @foreach($subcategories as $subcategory)
+                                            <li><a href="#">{{  $subcategory->subcategory_name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach   
+                        </ul> --}}
+                        
+                        <!-- 2nd Way -->
                         <ul class="cat_menu">
-                            <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                            <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                <ul>
-                                    <li class="hassubs">
-                                        <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                            @foreach( $categories as $category)
+                                <li class="hassubs">
+                                    <a href="#">{{ $category->category_name }} <i class="fa fa-chevron-right"></i> </a>
+                                    <ul>
+                                        @foreach($subcategories as $subcategory)
+                                            @if ($category->id == $subcategory->category_id)
+                                                <li><a href="#">{{ $subcategory->subcategory_name }}</a></li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach   
                         </ul>
                     </div>
+                            
 
                 <!-- Main Nav Menu -->
                     <div class="main_nav_menu ml-auto">
@@ -217,12 +239,18 @@
 <div class="banner_background" style="background-image:url({{asset('frontend/images/banner_background.jpg')}}"></div>
 <div class="container fill_height">
     <div class="row fill_height">
-        <div class="banner_product_image"><img src="{{asset('frontend/images/banner_product.png')}}" alt=""></div>
+        <div class="banner_product_image"><img src="{{ asset($slider->image_one)}}" alt=""></div> <!--Must be take PNG Formate-->
         <div class="col-lg-5 offset-lg-4 fill_height">
             <div class="banner_content">
-                <h1 class="banner_text">new era of smartphones</h1>
-                <div class="banner_price"><span>$530</span>$460</div>
-                <div class="banner_product_name">Apple Iphone 6s</div>
+                <h1 class="banner_text">{{ $slider->product_name }}</h1>
+                <div class="banner_price">
+                    @if($slider->discount_price == NULL)
+                        <h2>${{ $slider->selling_price }}</h2>
+                    @else
+                        <span>${{ $slider->selling_price }}</span>${{ $slider->discount_price }}
+                    @endif
+                </div>
+                <div class="banner_product_name">{{ $slider->brand_name }}</div>
                 <div class="button banner_button"><a href="#">Shop Now</a></div>
             </div>
         </div>

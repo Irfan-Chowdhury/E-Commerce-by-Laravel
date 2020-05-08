@@ -20,7 +20,7 @@
                       </ul>
                   </div>
               @endif
-            <form method="post" action="{{ url('admin/update/category/'.$category->id) }}">
+            <form method="post" action="{{ url('admin/categories/update/category/'.$category->id) }}">
               @csrf
               <div class="modal-body pd-20">
                 <div class="form-group">

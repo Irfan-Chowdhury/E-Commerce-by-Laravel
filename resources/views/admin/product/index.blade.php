@@ -62,7 +62,6 @@
           </div><!-- table-wrapper -->
         </div><!-- card -->
       </div><!-- sl-pagebody -->
-  </div>
 
 
 

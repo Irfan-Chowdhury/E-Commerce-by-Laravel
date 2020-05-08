@@ -17,10 +17,12 @@ class SubCategoryController extends Controller
 
     public function subCategory()
     {
-    	$categories     = DB::table('categories')->get();
+        $categories     = DB::table('categories')->get();
+        
         $subCategories  = DB::table('subcategories')
                         ->select('subcategories.*','categories.category_name')
                         ->join('categories','subcategories.category_id','categories.id')
+                        ->orderBy('categories.category_name','ASC')
                         ->get();
                
         return view('admin.subcategory.subcategory',compact('categories','subCategories'));

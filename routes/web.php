@@ -1,9 +1,9 @@
 <?php
 
 
-Route::get('/', function(){
-    return view('pages.index');
-});
+// Route::get('/', function(){
+//     return view('pages.index');
+// });
 
 
             //-------auth & user----------
@@ -108,14 +108,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 });
 
 
-
-
 // ========= Frontend part all in here =========
 
 Route::group(['namespace' => 'User'], function () {
+    Route::get('/', 'FrontController@index')->name('front.home');
     Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
 });
 
 
 
 // php artisan make:migration create_users_table --create=users
+// 13:15

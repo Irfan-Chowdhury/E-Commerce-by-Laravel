@@ -26,6 +26,7 @@ class ProductController extends Controller
                 ->select('products.*','categories.category_name','brands.brand_name')
                 ->orderBy('categories.id','DESC')
                 ->get();
+                
         return view('admin.product.index',compact('product'));
     }
 
@@ -237,7 +238,7 @@ class ProductController extends Controller
             unlink($old_three);
 
             $image_one_name= hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
-            Image::make($image_one)->resize(230,300)->save('public/media/product/'.$image_one_name);
+            Image::make($image_one)->resize(300,300)->save('public/media/product/'.$image_one_name);
             $data['image_one']='public/media/product/'.$image_one_name;
                 
             $image_two_name= hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
