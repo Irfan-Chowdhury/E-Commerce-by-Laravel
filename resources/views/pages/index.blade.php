@@ -68,6 +68,8 @@
 			<div class="row">
 				<div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
 					
+					<!-- ################ Left Column ########### -->	
+
 					<!-- Deals -->
 
 					<div class="deals">
@@ -77,52 +79,60 @@
 							<!-- Deals Slider -->
 							<div class="owl-carousel owl-theme deals_slider">
 								
-								<!-- Deals Item -->
-								<div class="owl-item deals_item">
-									<div class="deals_image"><img src="{{asset('frontend/images/deals.png')}}" alt=""></div>
-									<div class="deals_content">
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
-										</div>
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
-										</div>
-										<div class="available">
-											<div class="available_line d-flex flex-row justify-content-start">
-												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+								@foreach($hot_deal as $hot)
+									<!-- Deals Item -->
+									<div class="owl-item deals_item">
+										<div class="deals_image"><img src="{{asset($hot->image_one)}}" alt=""></div>
+										<div class="deals_content">
+											<div class="deals_info_line d-flex flex-row justify-content-start">
+												<div class="deals_item_category"><a href="#">{{ $hot->brand_name }}</a></div>
+												@if($hot->discount_price != NULL)
+													<div class="deals_item_price_a ml-auto">$ <del>{{ $hot->selling_price }}</del></div>
+												@endif
 											</div>
-											<div class="available_bar"><span style="width:17%"></span></div>
-										</div>
-										<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-											<div class="deals_timer_title_container">
-												<div class="deals_timer_title">Hurry Up</div>
-												<div class="deals_timer_subtitle">Offer ends in:</div>
+											<div class="deals_info_line d-flex flex-row justify-content-start">
+												<div class="deals_item_name">{{ $hot->product_name }}</div>
+												@if($hot->discount_price != NULL)
+													<div class="deals_item_price ml-auto">$ {{ $hot->discount_price }}</div>
+												@else
+													<div class="deals_item_price ml-auto">$ {{ $hot->selling_price }}</div>
+												@endif
 											</div>
-											<div class="deals_timer_content ml-auto">
-												<div class="deals_timer_box clearfix" data-target-time="">
-													<div class="deals_timer_unit">
-														<div id="deals_timer1_hr" class="deals_timer_hr"></div>
-														<span>hours</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer1_min" class="deals_timer_min"></div>
-														<span>mins</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer1_sec" class="deals_timer_sec"></div>
-														<span>secs</span>
+											<div class="available">
+												<div class="available_line d-flex flex-row justify-content-start">
+													<div class="available_title">Available: <span>{{ $hot->product_quantity }}</span></div>
+													<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+												</div>
+												<div class="available_bar"><span style="width:17%"></span></div>
+											</div>
+											<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
+												<div class="deals_timer_title_container">
+													<div class="deals_timer_title">Hurry Up</div>
+													<div class="deals_timer_subtitle">Offer ends in:</div>
+												</div>
+												<div class="deals_timer_content ml-auto">
+													<div class="deals_timer_box clearfix" data-target-time="">
+														<div class="deals_timer_unit">
+															<div id="deals_timer1_hr" class="deals_timer_hr"></div>
+															<span>hours</span>
+														</div>
+														<div class="deals_timer_unit">
+															<div id="deals_timer1_min" class="deals_timer_min"></div>
+															<span>mins</span>
+														</div>
+														<div class="deals_timer_unit">
+															<div id="deals_timer1_sec" class="deals_timer_sec"></div>
+															<span>secs</span>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								@endforeach
 
 								<!-- Deals Item -->
-								<div class="owl-item deals_item">
+								{{-- <div class="owl-item deals_item">
 									<div class="deals_image"><img src="{{asset('frontend/images/adv_1.png')}}" alt=""></div>
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
@@ -163,10 +173,10 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 
 								<!-- Deals Item -->
-								<div class="owl-item deals_item">
+								{{-- <div class="owl-item deals_item">
 									<div class="deals_image"><img src="{{asset('frontend/images/adv_2.png')}}" alt=""></div>
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
@@ -207,7 +217,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 
 							</div>
 
@@ -219,6 +229,9 @@
 						</div>
 					</div>
 					
+
+
+					<!-- ################ Right Column ########### -->	
 
 					<!-- Featured -->
 					<div class="featured">
@@ -232,27 +245,28 @@
 								<div class="tabs_line"><span></span></div>
 							</div>
 
+
 							<!-- Product Panel -->
 							<div class="product_panel panel active">
 								<div class="featured_slider slider">
 
-									@foreach($featured as $row) 
+									@foreach($new_featured as $featured) 
 
 										<!-- Slider Item -->
 										<div class="featured_slider_item">
 											<div class="border_active"></div>
 											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
 												<div class="product_image d-flex flex-column align-items-center justify-content-center">
-													<img src="{{ asset($row->image_one) }}" style="height: 120px; width: 130px;">
+													<img src="{{ asset($featured->image_one) }}" style="height: 120px; width: 130px;">
 												</div>
 												
 												<div class="product_content">
-													@if($row->discount_price == NULL)
-														<br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span>
+													@if($featured->discount_price == NULL)
+														<br><span class="text-danger"><b> ${{ $featured->selling_price }} </b></span>
 													@else
-														<div class="product_price discount">${{ $row->discount_price }}<span>${{ $row->selling_price }}</span></div>
+														<div class="product_price discount">${{ $featured->discount_price }}<span>$ <del>{{ $featured->selling_price }}</del></span></div>
 													@endif
-													<div class="product_name"><div><a href="product.html">{{ $row->product_name }}</a></div></div>
+													<div class="product_name"><div><a href="product.html">{{ $featured->product_name }}</a></div></div>
 													<div class="product_extras">
 														<div class="product_color">
 															<input type="radio" checked name="product_color" style="background:#b19c83">
@@ -262,11 +276,20 @@
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												<div class="product_fav"><i class="fas fa-heart text-info"></i></div>
 												<ul class="product_marks">
-													<li class="product_mark product_discount">-25%</li>
-													<li class="product_mark product_new">new</li>
-												</ul>
+													@if($featured->discount_price == NULL)
+														<li class="product_mark product_discount" style="background: green;">New</li>
+													@else
+														@php
+															$amount  = $featured->selling_price - $featured->discount_price;
+															$discount= $amount/$featured->selling_price * 100;
+														@endphp 
+														<li class="product_mark product_discount">
+												  			{{ intval($discount) }}%
+												   		</li>
+													@endif
+											   </ul>
 											</div>
 										</div>
 
@@ -275,27 +298,28 @@
 								<div class="featured_slider_dots_cover"></div>
 							</div>
 
+
 							<!-- Product Panel -->
 							<div class="product_panel panel active">
-								<div class="featured_slider slider">
+								<div class="featured_slider slider"> 
 
-									@foreach($trend as $row) 
+									@foreach($trends as $trend) 
 
 										<!-- Slider Item -->
 										<div class="featured_slider_item">
 											<div class="border_active"></div>
 											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
 												<div class="product_image d-flex flex-column align-items-center justify-content-center">
-													<img src="{{ asset($row->image_one) }}" style="height: 120px; width: 130px;">
+													<img src="{{ asset($trend->image_one) }}" style="height: 120px; width: 130px;">
 												</div>
 												
 												<div class="product_content">
-													@if($row->discount_price == NULL)
-														<br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span>
+													@if($trend->discount_price == NULL)
+														<br><span class="text-danger"><b> ${{ $trend->selling_price }} </b></span>
 													@else
-														<div class="product_price discount">${{ $row->discount_price }}<span>${{ $row->selling_price }}</span></div>
+														<div class="product_price discount">${{ $trend->discount_price }}<span>$ <del>{{ $trend->selling_price }}</del></span></div>
 													@endif
-													<div class="product_name"><div><a href="product.html">{{ $row->product_name }}</a></div></div>
+													<div class="product_name"><div><a href="product.html">{{ $trend->product_name }}</a></div></div>
 													<div class="product_extras">
 														<div class="product_color">
 															<input type="radio" checked name="product_color" style="background:#b19c83">
@@ -305,11 +329,20 @@
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												<div class="product_fav"><i class="fas fa-heart text-info"></i></div>
 												<ul class="product_marks">
-													<li class="product_mark product_discount">-25%</li>
-													<li class="product_mark product_new">new</li>
-												</ul>
+													@if($trend->discount_price == NULL)
+														<li class="product_mark product_discount" style="background: green;">New</li>
+													@else
+														@php
+															$amount  = $trend->selling_price - $trend->discount_price;
+															$discount= $amount/$trend->selling_price * 100;
+														@endphp 
+														<li class="product_mark product_discount">
+												  			{{ intval($discount) }}%
+												   		</li>
+													@endif
+											   </ul>
 											</div>
 										</div>
 
@@ -318,27 +351,28 @@
 								<div class="featured_slider_dots_cover"></div>
 							</div>
 
+
 							<!-- Product Panel -->
 							<div class="product_panel panel active">
 								<div class="featured_slider slider">
 
-									@foreach($best_rated as $row) 
+									@foreach($best_rated as $bestRate) 
 
 										<!-- Slider Item -->
 										<div class="featured_slider_item">
 											<div class="border_active"></div>
 											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
 												<div class="product_image d-flex flex-column align-items-center justify-content-center">
-													<img src="{{ asset($row->image_one) }}" style="height: 120px; width: 130px;">
+													<img src="{{ asset($bestRate->image_one) }}" style="height: 120px; width: 130px;">
 												</div>
 												
 												<div class="product_content">
-													@if($row->discount_price == NULL)
-														<br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span>
+													@if($bestRate->discount_price == NULL)
+														<br><span class="text-danger"><b> ${{ $bestRate->selling_price }} </b></span>
 													@else
-														<div class="product_price discount">${{ $row->discount_price }}<span>${{ $row->selling_price }}</span></div>
+														<div class="product_price discount">${{ $bestRate->discount_price }}<span>$ <del>{{ $bestRate->selling_price }}</del></span></div>
 													@endif
-													<div class="product_name"><div><a href="product.html">{{ $row->product_name }}</a></div></div>
+													<div class="product_name"><div><a href="product.html">{{ $bestRate->product_name }}</a></div></div>
 													<div class="product_extras">
 														<div class="product_color">
 															<input type="radio" checked name="product_color" style="background:#b19c83">
@@ -348,21 +382,27 @@
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												<div class="product_fav"><i class="fas fa-heart text-info"></i></div>
 												<ul class="product_marks">
-													@if($row->discount_price == NULL)
-													<li class="product_mark product_discount" style="background: green;">25%</li>
+													@if($bestRate->discount_price == NULL)
+														<li class="product_mark product_discount" style="background: green;">New</li>
 													@else
-													<li class="product_mark product_new">new</li>
+														@php
+															$amount  = $bestRate->selling_price - $bestRate->discount_price;
+															$discount= $amount/$bestRate->selling_price * 100;
+														@endphp 
+														<li class="product_mark product_discount">
+												  			{{ intval($discount) }}%
+												   		</li>
 													@endif
-												</ul>
+											   </ul>
 											</div>
 										</div>
-
 									@endforeach
 								</div>
 								<div class="featured_slider_dots_cover"></div>
 							</div>
+
 
 						</div>
 					</div>
@@ -372,14 +412,14 @@
 		</div>
 	</div>
 
-	<!-- Popular Categories -->
+	<!-- Popular Brands -->
 
 	<div class="popular_categories">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="popular_categories_content">
-						<div class="popular_categories_title">Popular Categories</div>
+						<div class="popular_categories_title">Popular Brands</div>
 						<div class="popular_categories_slider_nav">
 							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
 							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
@@ -388,51 +428,21 @@
 					</div>
 				</div>
 				
-				<!-- Popular Categories Slider -->
+				<!-- Popular Brand Slider -->
 
 				<div class="col-lg-9">
 					<div class="popular_categories_slider_container">
 						<div class="owl-carousel owl-theme popular_categories_slider">
 
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="{{asset('frontend/images/popular_1.png')}}" alt=""></div>
-									<div class="popular_category_text">Smartphones & Tablets</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="{{asset('frontend/images/popular_2.png')}}" alt=""></div>
-									<div class="popular_category_text">Computers & Laptops</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="{{asset('frontend/images/popular_3.png')}}" alt=""></div>
-									<div class="popular_category_text">Gadgets</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="{{asset('frontend/images/popular_4.png')}}" alt=""></div>
-									<div class="popular_category_text">Video Games & Consoles</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="{{asset('frontend/images/popular_5.png')}}" alt=""></div>
-									<div class="popular_category_text">Accessories</div>
-								</div>
-							</div>
+							@foreach ($brands as $item)
+								<div class="owl-item">
+									<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+										<div class="popular_category_image"><img src="{{asset($item->brand_logo)}}" alt=""></div>
+										<div class="popular_category_text">{{$item->brand_name}}</div>
+									</div>
+								</div>	
+							@endforeach
 
 						</div>
 					</div>
@@ -452,32 +462,34 @@
 			<div class="owl-carousel owl-theme banner_2_slider">
 
 				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
-					<div class="banner_2_item">
-						<div class="container fill_height">
-							<div class="row fill_height">
-								<div class="col-lg-4 col-md-6 fill_height">
-									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+				@foreach($mid_slider as $item) 
+					<div class="owl-item">
+						<div class="banner_2_item">
+							<div class="container fill_height">
+								<div class="row fill_height">
+									<div class="col-lg-4 col-md-6 fill_height">
+										<div class="banner_2_content">
+											<div class="banner_2_category">{{ $item->category_name }}</div>
+											<div class="banner_2_title">{{ $item->product_name }}</div>
+											<div class="banner_2_text">{{ $item->brand_name }} <br>Product Id: {{ $item->product_code }}.</div>
+											<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+											<div class="button banner_2_button"><a href="#">Explore</a></div>
+										</div>
+										
 									</div>
-									
-								</div>
-								<div class="col-lg-8 col-md-6 fill_height">
-									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="{{asset('frontend/images/banner_2_product.png')}}" alt=""></div>
+									<div class="col-lg-8 col-md-6 fill_height">
+										<div class="banner_2_image_container">
+											<div class="banner_2_image"><img src="{{ asset($item->image_one) }}" style="height: 300px; width: 320px;" alt=""></div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>			
+							</div>			
+						</div>
 					</div>
-				</div>
+				@endforeach
 
 				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
+				{{-- <div class="owl-item">
 					<div class="banner_2_item">
 						<div class="container fill_height">
 							<div class="row fill_height">
@@ -493,16 +505,16 @@
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="{{asset('frontend/images/banner_2_product.png')}}" alt=""></div>
+										<div class="banner_2_image"><img src="{{asset('frontend/images/banner_product.png')}}" alt=""></div>
 									</div>
 								</div>
 							</div>
 						</div>			
 					</div>
-				</div>
+				</div> --}}
 
 				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
+				{{-- <div class="owl-item">
 					<div class="banner_2_item">
 						<div class="container fill_height">
 							<div class="row fill_height">
@@ -524,7 +536,7 @@
 							</div>
 						</div>			
 					</div>
-				</div>
+				</div> --}}
 
 			</div>
 		</div>
