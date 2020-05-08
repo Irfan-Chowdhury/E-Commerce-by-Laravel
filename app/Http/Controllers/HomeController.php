@@ -13,7 +13,7 @@ class HomeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void----
      */
     public function __construct()
     {
@@ -68,16 +68,14 @@ class HomeController extends Controller
 
     // }
 
-    // public function Logout()
-    // {
-    //     // $logout= Auth::logout();
-    //         Auth::logout();
-    //         $notification=array(
-    //             'messege'=>'Successfully Logout',
-    //             'alert-type'=>'success'
-    //              );
-    //          return Redirect()->to('/')->with($notification);
-
-
-    // }
+    public function Logout()
+    {
+        // $logout= Auth::logout();
+        Auth::logout();
+        $notification=array(
+            'messege'=>'Successfully Logout',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('login')->with($notification);
+    }
 }

@@ -13,8 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+                    
+                    <p class="display-4">Welcome, <b> {{ Auth::user()->name }} </b></p>
 
                     You are logged in!
+
+                    <br><br><br>
+                    <a href="{{route('user.logout')}}" class="btn btn-danger">Logout</a>
                 </div>
             </div>
         </div>

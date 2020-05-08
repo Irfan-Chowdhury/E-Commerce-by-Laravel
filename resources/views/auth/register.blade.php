@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
 
 <div class="wrapper without_header_sidebar">
@@ -61,4 +61,4 @@
         </div>
     </div><!--/ content wrapper -->
 </div><!--/ wrapper -->
-@endsection
+@endsection --}}
