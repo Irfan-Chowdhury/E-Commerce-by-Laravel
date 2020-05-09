@@ -52,7 +52,9 @@ class FrontController extends Controller
                     ->limit(4)
                     ->get();
         
-        return view('pages.index',compact('new_featured','trends','best_rated','hot_deal','brands','mid_slider'));
+        $buyone_getone = DB::table('products')->where('status',1)->where('buyone_getone',1)->orderBy('id','desc')->limit(12)->get();
+
+        return view('pages.index',compact('new_featured','trends','best_rated','hot_deal','brands','mid_slider','buyone_getone'));
     }
 
 
