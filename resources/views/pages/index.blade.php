@@ -68,7 +68,7 @@
 			<div class="row">
 				<div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
 					
-					<!-- ################ Left Column ########### -->	
+				<!-- ################ Left Column ########### -->	
 
 					<!-- Deals -->
 
@@ -229,9 +229,7 @@
 						</div>
 					</div>
 					
-
-
-					<!-- ################ Right Column ########### -->	
+				<!-- ################ Right Column ########### -->	
 
 					<!-- Featured -->
 					<div class="featured">
@@ -271,7 +269,7 @@
 															<input type="radio" name="product_color" style="background:#000000">
 															<input type="radio" name="product_color" style="background:#999999">
 														</div>
-														<button class="product_cart_button">Add to Cart</button>
+														<button class="product_cart_button addcard" data-id="{{ $featured->id }}">Add to Cart</button>
 													</div>
 												</div>
 												{{-- <a href="{{route('wishlist.add',$featured->id)}}">
@@ -476,7 +474,7 @@
 															<a href="#">{{ $item->product_name }}</a>
 														</div>
 														<div class="product_extras">
-															<button class="product_cart_button">Add to Cart</button>
+															<button class="product_cart_button addcard" data-id="{{ $item->id }}">Add to Cart</button>
 														</div>
 													</div>
 													<button class="addwishlist" data-id="{{ $item->id }}"> 
@@ -510,6 +508,8 @@
 		</div>      
 	</div>
 
+
+<!--Specific Category Wise -->
 @php 
 
 $cats        = DB::table('categories')->skip(4)->first();
@@ -552,7 +552,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
                                                     {{ $row->product_name }}
                                                 </a></div></div>
                                                 <div class="product_extras">
-                                                    <button class="product_cart_button">Add to Cart</button>
+                                                    <button class="product_cart_button addcard" data-id="{{ $row->id }}">Add to Cart</button>
                                                 </div>
                                             </div>
                                              <button class="addwishlist" data-id="{{ $row->id }}"> 
@@ -680,7 +680,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 												@else
 													<div class="product_price discount">${{ $row->discount_price }}<span>$ <del>{{ $row->selling_price }}</del></span></div>
 												@endif
-													<div><a href="" class="btn btn-danger btn-sm pull-right">add to cart</a></div>
+													<div><button class="btn btn-danger btn-sm pull-right addcard" data-id="{{ $row->id }}">add to cart</button></div>
 											</div>
 
 										</div>
@@ -1016,6 +1016,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
+	<!--addwishlist-->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			  $('.addwishlist').on('click', function(){  
@@ -1057,5 +1058,49 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 		   });
 	   });
   
-  </script>
+  	</script>
+	
+
+	<!--addcard-->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			  $('.addcard').on('click', function(){  
+				var id = $(this).data('id');
+				// alert(id);
+				if(id) {
+				   $.ajax({
+					   url: "{{  url('/cart/to/add/') }}/"+id,
+					   type:"GET",
+					   dataType:"json",
+					   success:function(data) {
+						 const Toast = Swal.mixin({
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							timer: 3000
+						  })
+  
+						 if($.isEmptyObject(data.error)){
+							  Toast.fire({
+								type: 'success',
+								title: data.success
+							  })
+						 }else{
+							   Toast.fire({
+								  type: 'error',
+								  title: data.error
+							  })
+						 }
+  
+					   },
+					  
+				   });
+			   } else {
+				   alert('danger');
+			   }
+				e.preventDefault();
+		   });
+	   });
+  
+  	</script>
     @endsection

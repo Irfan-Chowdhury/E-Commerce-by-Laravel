@@ -116,7 +116,14 @@ Route::group(['namespace' => 'User'], function () {
     Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
 
     //--Wishlist--
-    Route::get('/wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add');
+    Route::get('/wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add'); //Ajax use
+    
+    //--Cart--
+    Route::group(['prefix' => 'cart'], function () { 
+        Route::get('/to/add/{id}', 'CartController@cartAdd')->name('wishlist.add'); //Ajax use
+        Route::get('/check', 'CartController@check');
+    });
+   
 });
 
 
@@ -126,4 +133,5 @@ Route::group(['namespace' => 'User'], function () {
 
 
 // ---- Package ----
-// 1. Shopping Cart: https://packagist.org/packages/bumbummen99/shoppingcart
+// 1. Image Intervention : http://image.intervention.io/
+// 2. Shopping Cart      : https://packagist.org/packages/bumbummen99/shoppingcart
