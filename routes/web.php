@@ -106,9 +106,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('/post/update/{id}','BlogController@update')->name('blog.post.update');
     });
 
-    //--Wishlist--
-    Route::get('wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add');
-    
 });
 
 
@@ -117,7 +114,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 Route::group(['namespace' => 'User'], function () {
     Route::get('/', 'FrontController@index')->name('front.home');
     Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
+
+    //--Wishlist--
+    Route::get('/wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add');
 });
+
 
 
 
