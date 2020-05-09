@@ -89,6 +89,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('update/photo/{id}','ProductController@productPhotoUpdate')->name('product.update.photo');  
     });
 
+    //--Blog--
     Route::group(['prefix' => 'blog'], function () {
         //Category of Post
         Route::get('/category/index', 'BlogController@categoryIndex')->name('blog.category.index');
@@ -104,6 +105,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/post/edit/{id}','BlogController@edit')->name('blog.post.edit');
         Route::post('/post/update/{id}','BlogController@update')->name('blog.post.update');
     });
+
+    //--Wishlist--
+    Route::get('wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add');
     
 });
 
