@@ -123,6 +123,10 @@ Route::group(['namespace' => 'User'], function () {
         Route::get('/to/add/{id}', 'CartController@cartAdd')->name('wishlist.add'); //Ajax use
         Route::get('/check', 'CartController@check');
     });
+
+    //--Socialite--
+    Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+    Route::get('/callback/{provider}', 'SocialController@callback');
    
 });
 
@@ -135,3 +139,4 @@ Route::group(['namespace' => 'User'], function () {
 // ---- Package ----
 // 1. Image Intervention : http://image.intervention.io/
 // 2. Shopping Cart      : https://packagist.org/packages/bumbummen99/shoppingcart
+// 3. Socialite          : https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/

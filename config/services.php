@@ -30,10 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-     'google' => [
-     'client_id' => '1022825030130-pjqqhr5dqo7dfvt5b6gsho8ja0tgims5.apps.googleusercontent.com',
-     'client_secret' => 'pxik4e9pgGR1fX0C_ce7SJ6R',
-     'redirect' => 'http://localhost/online_shop/callback/google',
-     ],
+    'google' => [
+        'client_id' => '178485598277-vta71ntnnmqhrf0vvtmhjaaqnrtev6gi.apps.googleusercontent.com',
+        'client_secret' => 'EqwdYbCBl2VUwO3bAVdNhMU9',
+        'redirect' => 'http://localhost:8000/callback/google',
+    ], 
 
 ];
