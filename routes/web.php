@@ -128,6 +128,13 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
     Route::get('/callback/{provider}', 'SocialController@callback');
    
+    // --- Product Details Show ---
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/details/{id}/{product_name}', 'ProductController@ProductView');
+        Route::post('/add/cart/{id}', 'ProductController@productAddCart')->name('product.add.cart');
+    });   
+    
+
 });
 
 

@@ -262,7 +262,7 @@
 													@else
 														<div class="product_price discount">${{ $featured->discount_price }}<span>$ <del>{{ $featured->selling_price }}</del></span></div>
 													@endif
-													<div class="product_name"><div><a href="product.html">{{ $featured->product_name }}</a></div></div>
+													<div class="product_name"><div><a href="{{ url('product/details/'.$featured->id.'/'.$featured->product_name) }}">{{ $featured->product_name }}</a></div></div>
 													<div class="product_extras">
 														<div class="product_color">
 															<input type="radio" checked name="product_color" style="background:#b19c83">
@@ -471,7 +471,7 @@
 															<div class="product_price discount">${{ $item->discount_price }} <span>$ <del>{{ $item->selling_price }}</del></span></div>
 														@endif
 														<div class="product_name">
-															<a href="#">{{ $item->product_name }}</a>
+															<a href="{{ url('product/details/'.$item->id.'/'.$item->product_name) }}">{{ $item->product_name }}</a>
 														</div>
 														<div class="product_extras">
 															<button class="product_cart_button addcard" data-id="{{ $item->id }}">Add to Cart</button>
@@ -548,7 +548,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
                                             @else
                                              	<div class="product_price discount">${{ $row->discount_price }}<span>$ <del>{{ $row->selling_price }}</del></span></div>
                                             @endif
-                                                <div class="product_name"><div><a href="#">
+                                                <div class="product_name"><div><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">
                                                     {{ $row->product_name }}
                                                 </a></div></div>
                                                 <div class="product_extras">
@@ -674,7 +674,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 										<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset($row->image_one) }}" style="height: 220px;"></div>
 										<div class="trends_content">
 											<div class="trends_info clearfix">
-												<div class="trends_name"><a href="#">{{ $row->product_name }}</a></div><br>
+												<div class="trends_name"><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">{{ $row->product_name }}</a></div><br>
 												@if($row->discount_price == NULL)
 													<br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span>
 												@else
