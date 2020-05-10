@@ -50,4 +50,44 @@ class CartController extends Controller
     	$content=Cart::content();
     	return response()->json($content);
     }
+
+    public function showCart()
+    {
+        $cart = Cart::content();
+        return view('pages.cart',compact('cart'));
+    }
+
+    public function removeCart($rowId)
+    {
+        Cart::remove($rowId);
+        
+        $notification  = array(
+            'messege'   =>'Removed Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    // public function updateCart(Request $request)
+    // {
+    //     $rowId = $request->productid;
+    //     $qty   = $request->qty;
+
+    //     Cart::update($rowId, $qty);
+
+    //     return redirect()->back();
+    // }
+    public function updateCart(Request $request, $rowId)
+    {
+        $qty   = $request->qty;
+
+        Cart::update($rowId, $qty);
+
+        $notification  = array(
+            'messege'   =>'Updated Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
 }

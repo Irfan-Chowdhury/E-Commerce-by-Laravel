@@ -122,6 +122,12 @@ Route::group(['namespace' => 'User'], function () {
     Route::group(['prefix' => 'cart'], function () { 
         Route::get('/to/add/{id}', 'CartController@cartAdd')->name('wishlist.add'); //Ajax use
         Route::get('/check', 'CartController@check');
+        Route::get('/show','CartController@showCart')->name('show.cart');
+        Route::get('/remove/{rowId}','CartController@removeCart')->name('remove.cart');
+        // Route::post('/update/item','CartController@updateCart')->name('update.cartitem');
+        Route::post('/update/item/{rowId}','CartController@updateCart')->name('update.cartitem');
+
+
     });
 
     //--Socialite--
@@ -132,6 +138,7 @@ Route::group(['namespace' => 'User'], function () {
     Route::group(['prefix' => 'product'], function () {
         Route::get('/details/{id}/{product_name}', 'ProductController@ProductView');
         Route::post('/add/cart/{id}', 'ProductController@productAddCart')->name('product.add.cart');
+
     });   
     
 
