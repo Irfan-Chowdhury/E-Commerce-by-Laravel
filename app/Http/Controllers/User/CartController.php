@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Cart;
 use Response;
+use Auth;
 
 class CartController extends Controller
 {
@@ -163,4 +164,31 @@ class CartController extends Controller
     }
 
 
+    // ===== Checkout =====
+
+    public function checkout()
+    {
+        if (Auth::check()) {
+              $cart = Cart::content();
+              return view('pages.checkout',compact('cart'));
+        }
+        else
+        {
+            $notification=array(
+                'messege'=>'AT first login your account',
+                'alert-type'=>'error'
+            );
+            return redirect()->route('login')->with($notification);
+        }
+    }
+
 }
+
+
+//Important Element for blade
+// <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/cart_styles.css') }}">
+// <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/cart_responsive.css') }}">
+
+
+// <script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
+

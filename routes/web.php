@@ -116,18 +116,25 @@ Route::group(['namespace' => 'User'], function () {
     Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
 
     //--Wishlist--
-    Route::get('/wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add'); //Ajax use
-    
+    Route::group(['prefix' => '/wishlist'], function () { 
+        Route::get('/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add'); //Ajax use
+        Route::get('/user/show','WishlistController@wishlistShow')->name('wishlist.show'); //there user.wishlist
+        Route::get('/delete/{id}', 'WishlistController@wishlistDelete')->name('wishlist.delete'); //Ajax use
+    });
+   
+
     //--Cart--
     Route::group(['prefix' => '/cart'], function () { 
-        Route::get('/to/add/{id}', 'CartController@cartAdd')->name('wishlist.add'); //Ajax use
+        Route::get('/to/add/{id}', 'CartController@cartAdd')->name('cart.add'); //Ajax use
         Route::get('/check', 'CartController@check');
-        Route::get('/show','CartController@showCart')->name('show.cart');
+        Route::get('/product/show','CartController@showCart')->name('show.cart');
         Route::get('/remove/{rowId}','CartController@removeCart')->name('remove.cart');        
         Route::post('/update/item/{rowId}','CartController@updateCart')->name('update.cartitem');
         //In Modal from Front
         Route::get('/product/view/{id}','CartController@viewProduct'); //Ajax
         Route::post('/insert-into-cart','CartController@insertIntoCart')->name('insert.into.cart');
+        Route::get('/user/checkout/','CartController@checkout')->name('user.checkout');
+
     });
 
 

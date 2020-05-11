@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use App\Model\Admin\Wishlist;
 
 class WishlistController extends Controller
 {
@@ -49,15 +50,14 @@ class WishlistController extends Controller
     // 	}
     // }
 
-
-    public function wishlistAdd($id)
+    public function wishlistAdd($productId)
     {
         $userid = Auth::id();
-    	$check  = DB::table('wishlists')->where('user_id',$userid)->where('product_id',$id)->first();
+    	$check  = DB::table('wishlists')->where('user_id',$userid)->where('product_id',$productId)->first();
 
     	$data = array(
     		'user_id'   => $userid, 
-    		'product_id'=>$id 
+    		'product_id'=> $productId 
     	);
 
         if (Auth::check()) 
@@ -79,6 +79,31 @@ class WishlistController extends Controller
     		//return \Response::json(['error' => 'At first login your account']);
               return response()->json(['error' => 'At first login your account']);        
     	}
+    }
+
+
+    public function wishlistShow()
+    {
+        $userid    = Auth::id();
+        $wishlists = DB::table('wishlists')
+                    ->select('products.*','wishlists.id')
+                    ->join('products','wishlists.product_id','products.id')
+                    ->where('wishlists.user_id',$userid)
+                    ->get();
+
+        return view('pages.wishlist',compact('wishlists'));             
+    }
+
+    public function wishlistDelete($id)
+    {
+        Wishlist::find($id)->delete();
+
+        // return redirect()->back();
+        $notification = array(
+            'messege'=>'Successfully Deleted',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
 
