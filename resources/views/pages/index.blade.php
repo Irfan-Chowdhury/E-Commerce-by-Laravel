@@ -269,12 +269,15 @@
 															<input type="radio" name="product_color" style="background:#000000">
 															<input type="radio" name="product_color" style="background:#999999">
 														</div>
-														<button class="product_cart_button addcard" data-id="{{ $featured->id }}">Add to Cart</button>
+														{{-- <button class="product_cart_button addcard" data-id="{{ $featured->id }}">Add to Cart</button> --}}
+														<button id="{{ $featured->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to Cart</button>
 													</div>
 												</div>
+												<!--Without Ajax-->
 												{{-- <a href="{{route('wishlist.add',$featured->id)}}">
 													<div class="product_fav"><i class="fas fa-heart text-info"></i></div>
-												</a> --}}
+												</a> --}} 
+												<!--With Ajax-->
 												<button  class="addwishlist" data-id="{{ $featured->id }}"> 
 													<div class="product_fav">
 														<i class="fa fa-heart text-info"></i>  
@@ -474,7 +477,7 @@
 															<a href="{{ url('product/details/'.$item->id.'/'.$item->product_name) }}">{{ $item->product_name }}</a>
 														</div>
 														<div class="product_extras">
-															<button class="product_cart_button addcard" data-id="{{ $item->id }}">Add to Cart</button>
+															<button id="{{ $item->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to Cart</button>
 														</div>
 													</div>
 													<button class="addwishlist" data-id="{{ $item->id }}"> 
@@ -552,7 +555,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
                                                     {{ $row->product_name }}
                                                 </a></div></div>
                                                 <div class="product_extras">
-                                                    <button class="product_cart_button addcard" data-id="{{ $row->id }}">Add to Cart</button>
+                                                    <button id="{{ $row->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to Cart</button>
                                                 </div>
                                             </div>
                                              <button class="addwishlist" data-id="{{ $row->id }}"> 
@@ -644,7 +647,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 		</div>
 	</div>
 
-	<!-- By One Get One -->
+	<!-- By One Get One ||| Here Not use Modal-->
 
     <div class="trends">
         <div class="trends_background" style="background-image:url({{ asset('public/frontend/images/trends_background.jpg') }})"></div>
@@ -680,7 +683,8 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 												@else
 													<div class="product_price discount">${{ $row->discount_price }}<span>$ <del>{{ $row->selling_price }}</del></span></div>
 												@endif
-													<div><button class="btn btn-danger btn-sm pull-right addcard" data-id="{{ $row->id }}">add to cart</button></div>
+													<div><button data-id="{{ $row->id }}" class="btn btn-danger btn-sm pull-right addcard">Add to Cart</button></div>
+													{{-- <div><button id="{{ $row->id }}" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to Cart</button></div> --}}
 											</div>
 
 										</div>
@@ -1061,7 +1065,7 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
   	</script>
 	
 
-	<!--addcard-->
+	<!--addcard ||| It's no need because we use Modal in bellow-->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			  $('.addcard').on('click', function(){  
@@ -1102,5 +1106,113 @@ $products    = DB::table('products')->where('category_id',$category_id)->where('
 		   });
 	   });
   
-  	</script>
-    @endsection
+	</script>
+
+
+
+
+<!--======== product cart add modal ===========-->
+
+<!-- Modal -->
+<div class="modal fade " id="cartmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title text-center" id="exampleModalLabel">Product Short Description</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		 <div class="row">
+			<div class="col-md-4">
+				<div class="card" style="width: 16rem;">
+				<img src="" class="card-img-top" id="pimage" style="height: 240px;">
+				<div class="card-body">
+
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-4 ml-auto">
+				<ul class="list-group">
+					<li class="list-group-item">Product Name: <h5 class="card-title" id="pname"></h5></span></li>
+					<li class="list-group-item">Product Code: <span id="pcode"> </span></li>
+					<li class="list-group-item">Category:  <span id="pcat"> </span></li>
+					<li class="list-group-item">SubCategory:  <span id="psubcat"> </span></li>
+					<li class="list-group-item">Brand: <span id="pbrand"> </span></li>
+					<li class="list-group-item">Stock: <span class="badge " style="background: green; color:white;">Available</span></li>
+			  	</ul>
+			</div>
+			<div class="col-md-4 ">
+				<form action="{{ route('insert.into.cart') }}" method="post">
+					@csrf
+					<input type="hidden" name="product_id" id="product_id"> 
+					<div class="form-group" id="colordiv">
+						<label for="">Color</label>
+						<select name="color" class="form-control">
+						</select>
+					</div>
+					<div class="form-group" id="sizediv" >
+						<label for="exampleInputEmail1">Size</label>
+						<select name="size" class="form-control" id="size">
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Quantity</label>
+						<input type="number" class="form-control" value="1" name="qty">
+					</div>
+				  	<button type="submit" class="btn btn-primary">Add To Cart</button>
+				</form>
+			 </div>
+		   </div>
+		</div>  
+	  </div>
+	</div>
+</div>
+  
+<!--modal end-->
+  
+ 
+  <!--For Add to Cart-->
+
+<script type="text/javascript">
+    function productview(id){
+		// alert(id)
+		$.ajax({			
+			url: "{{  url('/cart/product/view/') }}/"+id,
+			type:"GET",
+			dataType:"json",
+			success:function(data) {
+				$('#pname').text(data.product.product_name);
+				$('#pimage').attr('src',data.product.image_one);
+				$('#pcat').text(data.product.category_name);
+				$('#psubcat').text(data.product.subcategory_name);
+				$('#pbrand').text(data.product.brand_name);
+				$('#pcode').text(data.product.product_code);
+				$('#product_id').val(data.product.id);
+
+				var d = $('select[name="size"]').empty();
+				$.each(data.size, function(key, value){
+					$('select[name="size"]').append('<option value="'+ value +'">' + value + '</option>');
+					if (data.size == "") {
+							$('#sizediv').hide();   
+					}else{
+						$('#sizediv').show();
+					} 
+				});
+
+				var d =$('select[name="color"]').empty();
+				$.each(data.color, function(key, value){
+					$('select[name="color"]').append('<option value="'+ value +'">' + value + '</option>');
+					if (data.color == "") {
+							$('#colordiv').hide();
+					} else{
+						$('#colordiv').show();
+					}
+				});
+			}
+		})
+    }
+</script>
+	  
+@endsection

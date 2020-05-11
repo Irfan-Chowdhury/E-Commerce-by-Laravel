@@ -119,16 +119,17 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('/wishlist/add/{id}', 'WishlistController@wishlistAdd')->name('wishlist.add'); //Ajax use
     
     //--Cart--
-    Route::group(['prefix' => 'cart'], function () { 
+    Route::group(['prefix' => '/cart'], function () { 
         Route::get('/to/add/{id}', 'CartController@cartAdd')->name('wishlist.add'); //Ajax use
         Route::get('/check', 'CartController@check');
         Route::get('/show','CartController@showCart')->name('show.cart');
-        Route::get('/remove/{rowId}','CartController@removeCart')->name('remove.cart');
-        // Route::post('/update/item','CartController@updateCart')->name('update.cartitem');
+        Route::get('/remove/{rowId}','CartController@removeCart')->name('remove.cart');        
         Route::post('/update/item/{rowId}','CartController@updateCart')->name('update.cartitem');
-
-
+        //In Modal from Front
+        Route::get('/product/view/{id}','CartController@viewProduct'); //Ajax
+        Route::post('/insert-into-cart','CartController@insertIntoCart')->name('insert.into.cart');
     });
+
 
     //--Socialite--
     Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
