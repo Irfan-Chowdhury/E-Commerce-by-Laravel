@@ -127,9 +127,11 @@
                         @endif
                         
                         <div class="row mt-4">
-                            <a href="{{route('show.cart')}}" class="mr-3 btn btn-secondary text-light">Back</a>
-                            <a href="{{route('session.remove')}}" class="btn btn-danger text-light">Cancel Discount</a>
-                            <a href="#" class="ml-3 btn btn-success text-light">Final Step</a>
+                                <a href="{{route('show.cart')}}" class="mr-3 btn btn-secondary text-light">Back</a>
+                            @if (Session::has('coupon'))
+                                <a href="{{route('session.remove')}}" class="btn btn-danger text-light">Cancel Discount</a>
+                            @endif
+                                <a href="{{route('payment.step')}}" class="ml-3 btn btn-success text-light">Final Step</a>
                         </div>
                     </div>
 

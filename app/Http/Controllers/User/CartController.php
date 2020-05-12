@@ -246,8 +246,8 @@ class CartController extends Controller
 
      //Remove all Cart info
 
-     public function cartDestroy(Request $request)
-     {
+    public function cartDestroy(Request $request)
+    {
         Cart::destroy();
         $request->session()->forget('coupon');
 
@@ -256,7 +256,18 @@ class CartController extends Controller
             'alert-type'=>'success'
         );
         return redirect()->route('front.home')->with($notification);
-     }
+    }
+
+
+    public function PymentPage()
+    {
+        $setting          = DB::table('settings')->first();
+        $shipping_charge  = $setting->shipping_charge;
+        $vat              = $setting->vat;
+        
+        $cart = Cart::content();
+        return view('pages.payment',compact('cart','shipping_charge','vat'));
+    }
 
 
 }

@@ -139,6 +139,7 @@ Route::group(['namespace' => 'User'], function () {
         Route::get('/session/remove','CartController@deleteSessionData')->name('session.remove');
         //Remove all Cart Data
         Route::get('/destroy','CartController@cartDestroy')->name('cart.destroy');
+        Route::get('/payment/page/','CartController@PymentPage')->name('payment.step');
     });
 
 
