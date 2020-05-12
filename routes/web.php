@@ -128,13 +128,17 @@ Route::group(['namespace' => 'User'], function () {
         Route::get('/to/add/{id}', 'CartController@cartAdd')->name('cart.add'); //Ajax use
         Route::get('/check', 'CartController@check');
         Route::get('/product/show','CartController@showCart')->name('show.cart');
-        Route::get('/remove/{rowId}','CartController@removeCart')->name('remove.cart');        
+        Route::get('/remove/{rowId}','CartController@removeCartById')->name('remove.cart');        
         Route::post('/update/item/{rowId}','CartController@updateCart')->name('update.cartitem');
         //In Modal from Front
         Route::get('/product/view/{id}','CartController@viewProduct'); //Ajax
         Route::post('/insert-into-cart','CartController@insertIntoCart')->name('insert.into.cart');
         Route::get('/user/checkout/','CartController@checkout')->name('user.checkout');
-
+        Route::post('/user/apply/coupon/','CartController@coupon')->name('apply.coupon');
+        //Remove all Session Data
+        Route::get('/session/remove','CartController@deleteSessionData')->name('session.remove');
+        //Remove all Cart Data
+        Route::get('/destroy','CartController@cartDestroy')->name('cart.destroy');
     });
 
 

@@ -153,7 +153,12 @@
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-										<div class="cart_price">$ {{ Cart::Subtotal() }}</div>
+										
+										@if (Session::has('coupon'))
+											<div class="cart_price">$ {{Session::get('coupon')['balance']}}</div>
+										@else
+											<div class="cart_price">$ {{ Cart::Subtotal() }}</div>
+										@endif
 									</div>
 								</div>
 							</div>

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Admin\Setting;
 use DB;
 use Cart;
 use Response;
 use Auth;
+use Session;
 
 class CartController extends Controller
 {
@@ -59,7 +61,7 @@ class CartController extends Controller
         return view('pages.cart',compact('cart'));
     }
 
-    public function removeCart($rowId)
+    public function removeCartById($rowId)
     {
         Cart::remove($rowId);
         
@@ -168,9 +170,14 @@ class CartController extends Controller
 
     public function checkout()
     {
-        if (Auth::check()) {
+        $setting          = DB::table('settings')->first();
+        $shipping_charge  = $setting->shipping_charge;
+        $vat              = $setting->vat;
+
+        if (Auth::check()) 
+        {
               $cart = Cart::content();
-              return view('pages.checkout',compact('cart'));
+              return view('pages.checkout',compact('cart','shipping_charge','vat'));
         }
         else
         {
@@ -181,6 +188,76 @@ class CartController extends Controller
             return redirect()->route('login')->with($notification);
         }
     }
+
+    // ======= Coupon =======
+    public function coupon(Request $request)
+    {
+        $coupon = $request->coupon;
+        
+        $subtotal = Cart::Subtotal();
+
+        $total = implode(explode(',',$subtotal)) ;  //convert into integer like- 10,500.00 to 10500
+
+        // $result= $total - 400;
+        // return number_format($result, 2);
+
+        $check  = DB::table('coupons')->where('coupon',$coupon)->first();
+
+        if ($check)  
+        {
+            Session::put('coupon',[ //take in araray
+                'name'     => $check->coupon,
+                'discount' => $check->discount,
+                'balance'  => number_format($total - $check->discount, 2)  //convert into decimal (with comma) like- 10500 to 10,500.00 
+            ]);
+
+            // number_format($number, 2) = number_format(10500, 2) = 10,500.00
+            // visit- https://www.oreilly.com/library/view/php-in-a/0596100671/re68.html
+
+            $notification=array(
+                'messege'=>'Successfully Coupon Applied',
+                'alert-type'=>'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        else
+        {
+            $notification=array(
+                'messege'=>'Invalid Coupon',
+                'alert-type'=>'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+
+    //Remove all Session Data
+    public function deleteSessionData(Request $request) 
+    {
+        $request->session()->forget('coupon');
+
+        $notification=array(
+            'messege'   =>'Data has been removed from session.',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+        
+     }
+
+     //Remove all Cart info
+
+     public function cartDestroy(Request $request)
+     {
+        Cart::destroy();
+        $request->session()->forget('coupon');
+
+        $notification  = array(
+            'messege'   =>'Cart Destroy Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->route('front.home')->with($notification);
+     }
+
 
 }
 
