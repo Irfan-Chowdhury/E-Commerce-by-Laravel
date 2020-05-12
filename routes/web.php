@@ -143,6 +143,16 @@ Route::group(['namespace' => 'User'], function () {
     });
 
 
+    // --- Paymetn ----
+    Route::group(['prefix' => 'payment'], function () { 
+        Route::post('/process','PaymentController@paymentProcess')->name('payment.process');
+    });
+
+
+    
+
+
+
     //--Socialite--
     Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
     Route::get('/callback/{provider}', 'SocialController@callback');

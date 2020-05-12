@@ -73,8 +73,7 @@
                     <div class="contact_form_container">
                         <div class="contact_form_title text-center">Shipping Address</div>
 
-                        {{-- <form action="{{ route('payment.process') }}" id="contact_form" method="post"> --}}
-                        <form action="#" id="contact_form" method="post">
+                        <form action="{{ route('payment.process') }}" id="contact_form" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Full Name </label>
@@ -99,10 +98,11 @@
                             <div class="contact_form_title text-center">Payment By</div>
                            <div class="form-group">
                                 <ul class="logos_list " >
-                                            <li><input type="radio" name="payment" value="stripe"> <img src="{{ asset('frontend/images/mastercard.png') }}" style="width: 100px; height: 60px;"></li>
-                                            <li><input type="radio" name="payment" value="paypal"> <img src="{{ asset('frontend/images/paypal.png') }}" style="width: 100px;"></li>
-                                             <li><input type="radio" name="payment" value="ideal"> <img src="{{ asset('frontend/images/mollie.png') }}" style="width: 100px; height: 80px;"></li>
-                                 </ul>
+                                    <li><input type="radio" name="payment" value="stripe"> <img src="{{ asset('frontend/images/mastercard.png') }}" style="width: 100px; height: 60px;"></li>
+                                    <li><input type="radio" name="payment" value="paypal"> <img src="{{ asset('frontend/images/paypal.png') }}" style="width: 100px;"></li>
+                                    <li><input type="radio" name="payment" value="ideal"> <img src="{{ asset('frontend/images/mollie.png') }}" style="width: 100px; height: 80px;"></li>
+                                    <li><input type="radio" name="payment" value="hand_to_hand_cash"> <img src="{{ asset('frontend/images/hand_to_hand_cash.png') }}" style="width: 100px; height: 80px;"></li>
+                                </ul>
                             </div><br>
                             <div class="contact_form_button">
                                 <button type="submit" class="btn btn-info">Pay Now</button>
