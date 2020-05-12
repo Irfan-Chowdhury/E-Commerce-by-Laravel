@@ -43,27 +43,26 @@
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#">English<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Italian</a></li>
-											<li><a href="#">Spanish</a></li>
-											<li><a href="#">Japanese</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">EUR Euro</a></li>
-											<li><a href="#">GBP British Pound</a></li>
-											<li><a href="#">JPY Japanese Yen</a></li>
-										</ul>
-									</li>
+                                    <li>
+                                        @if(session()->get('lang') == 'bangla')
+                                        	<a href="{{ route('language.english') }}">English<i class="fas fa-chevron-down"></i></a>
+                                        @else
+                                         	<a href="{{ route('language.bangla') }}">বাংলা<i class="fas fa-chevron-down"></i></a>
+                                        @endif
+                                    </li>
 								</ul>
 							</div>
 							<div class="top_bar_user">
 								@guest
-									<div><a href="{{route('login')}}">Login/Register</a></div>
+									<div>
+										<a href="{{route('login')}}">
+											@if(session()->get('lang') == 'bangla')
+												রেজিস্টার / লগইন 
+											@else
+												Register/Login
+											@endif
+										</a>
+									</div>
 								@else
 									{{-- <div class="user_icon"><img src="{{asset('frontend/images/user.svg')}}" alt=""></div> --}}
 									<ul class="standard_dropdown top_bar_dropdown">
@@ -93,7 +92,16 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="{{url('/')}}">Irfan</a></div>
+							<div class="logo">
+								<a href="{{url('/')}}">
+									@if(session()->get('lang') == 'bangla')
+										ইরফান 
+									@else
+										IRFAN
+									@endif
+									
+								</a>
+							</div>
 						</div>
 					</div>
 

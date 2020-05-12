@@ -152,7 +152,18 @@ Route::group(['namespace' => 'User'], function () {
         Route::post('/add/cart/{id}', 'ProductController@productAddCart')->name('product.add.cart');
 
     });   
+
+    //--- Language Control ---
+    Route::group(['prefix' => 'language'], function () {
+        Route::get('/bangla','LanguageController@Bangla')->name('language.bangla');
+        Route::get('/english','LanguageController@English')->name('language.english');
+    });
     
+    //--- User Blog ---
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('/post','BlogController@blog')->name('blog.post');
+        Route::get('/single_post/{id}','BlogController@singlePost')->name('blog.single_post');
+    });       
 
 });
 
