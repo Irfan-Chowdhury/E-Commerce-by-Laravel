@@ -19,7 +19,7 @@ class OrderController extends Controller
     {
         //  $order = DB::table('orders')->where('status',0)->get();
         
-        $orders = Order::where('status',0)->orderBy('id','DESC')->get();
+        $orders = Order::orderBy('id','DESC')->where('status',0)->get();
 
     	return view('admin.order.new',compact('orders'));
     }
@@ -44,5 +44,92 @@ class OrderController extends Controller
 
 
           return view('admin.order.view',compact('order','order_details','shipping'));
+    }
+
+    //--- Payment Accept ---
+    public function orderPaymentAccept($id)
+    {
+        DB::table('orders')->where('id',$id)->update(['status'=> 1]);
+
+        $notification=array(
+            'messege'=>'Payment Accept Done',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('order.new')->with($notification);
+    }
+
+
+    public function orderPaymentAcceptList()
+    {
+        $orders = Order::orderBy('id','DESC')->where('status', 1)->get();
+
+    	return view('admin.order.new',compact('orders'));
+    }
+
+
+    // ---- Order Delivery ----
+    public function orderDeliveryProgress($id)
+    {
+        DB::table('orders')->where('id',$id)->update(['status' => 2]);
+
+        $notification = array(
+            'messege'=>'Send To delivery',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('order.payment.accept.list')->with($notification);
+    }
+
+    public function orderDeliveryProgressList()
+    {
+        $orders = Order::orderBy('id','DESC')->where('status',2)->get();;
+        return view('admin.order.new',compact('orders'));
+    }
+
+
+    // --- Delivery Done ---
+    public function orderDeliveryDone($id)
+    {
+
+        // $product = DB::table('order_details')->where('order_id',$id)->get();
+
+        // foreach ($product as $row) {
+        //     DB::table('products')
+        //       ->where('id',$row->product_id)
+        //       ->update(['product_quantity' => DB::raw('product_quantity -'.$row->quantity)]);
+        // }
+
+        DB::table('orders')->where('id',$id)->update(['status' => 3]);
+        
+        $notification=array(
+            'messege'=>'Delivery Successfully Done',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('order.delivery.progress.list')->with($notification);
+    }
+
+
+    public function orderDeliverySuccessList()
+    {
+        $orders = Order::orderBy('id','DESC')->where('status',3)->get();
+        return view('admin.order.new',compact('orders'));
+    }
+
+
+    //-- Order Payment Cancel ---
+    public function orderPaymentCancel($id)
+    {
+        DB::table('orders')->where('id',$id)->update(['status'=> 4]);
+
+        $notification=array(
+            'messege'=>'Order Cancel',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('order.new')->with($notification);
+    }
+
+    public function orderPaymentCancelList()
+    {
+        $orders = Order::orderBy('id','DESC')->where('status',4)->get();
+        return view('admin.order.new',compact('orders'));
     }
 }

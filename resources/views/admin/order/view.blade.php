@@ -33,14 +33,14 @@
                                     <th>{{ $order->payment_id }}</th>
                                 </tr>
                                 <tr>
-                                    <th>Total :</th>
-                                    <th>{{ $order->total }} $</th>
+                                    <th>Coupon : </th>
+                                    <th>
+                                        @if($order->coupon) {{ $order->coupon }} @else <span class="text-danger">None</span> @endif
+                                    </th>
                                 </tr>
                                 <tr>
-                                    <th>Month : </th>
-                                    <th>
-                                        {{ $order->month }}
-                                    </th>
+                                    <th>Total :</th>
+                                    <th>{{ $order->total }} $</th>
                                 </tr>
                                 <tr>
                                     <th>Date: </th>
@@ -81,15 +81,15 @@
                                     <th>Status : </th>
                                     <th>
                                         @if($order->status == 0)
-                                        <span class="badge badge-warning">Pending</span>
+                                            <span class="p-2 badge badge-warning">Pending</span>
                                         @elseif($order->status == 1)
-                                        <span class="badge badge-info">Payment Accept</span>
+                                            <span class="p-2 badge badge-info">Payment Accept</span>
                                         @elseif($order->status == 2)
-                                        <span class="badge badge-info">Progress </span>
+                                            <span class="p-2 badge badge-info">Progress </span>
                                         @elseif($order->status == 3)
-                                        <span class="badge badge-success">Delevered </span>
+                                            <span class="p-2 badge badge-success">Delevered </span>
                                         @else
-                                        <span class="badge badge-danger">Cancel </span>
+                                            <span class="p-2 badge badge-danger">Cancel </span>
                                         @endif
                                     </th>
                                 </tr>
@@ -142,18 +142,18 @@
 
 
             @if($order->status == 0)
-                <a href="#" class="m-2 btn btn-info">Payment Accept</a>
-                <a href="#" class="btn btn-danger" id="delete">Cancel Order</a>
+                <a href="{{route('order.payment.accept', $order->id)}}" class="m-2 btn btn-info">Payment Accept</a>
+                <a href="{{route('order.payment.cancel', $order->id)}}" class="btn btn-danger" id="delete">Cancel Order</a>
             @elseif($order->status == 1)
-                <a href="#" class="btn btn-info">Delevery Progress</a>
-                <strong> Payment Already Checked and pass here for delevery request</strong>
+                <a href="{{route('order.delivery.progress', $order->id)}}" class="btn btn-info">Dilevery Progress</a>
+                <strong> Payment Already Checked and pass here for dilevery request</strong>
             @elseif($order->status == 2)
-                <a href="#" class="btn btn-success">Delevered Done</a>
+                <a href="{{route('order.delivery.done', $order->id)}}" class="btn btn-success">Delivery Done</a>
                 <strong> Payment Already done your product are handover successfully</strong>
-            @elseif($order->status == 4)
-                <strong class="text-danger">This order are not valid its canceled</strong>
-            @else
+            @elseif($order->status == 3)
                 <strong class="text-success">This product are succesfully delevered</strong>
+            @elseif($order->status == 4)
+                <strong class="text-danger">This order are not valid its canceled</strong>                
             @endif
 
         </div>

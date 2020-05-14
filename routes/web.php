@@ -110,7 +110,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'order'], function () {
         Route::get('new', 'OrderController@orderNew')->name('order.new');
         Route::get('view/{id}', 'OrderController@orderView')->name('order.view');
-
+        Route::get('payment/accept/{id}', 'OrderController@orderPaymentAccept')->name('order.payment.accept');
+        Route::get('/payment/accept-list', 'OrderController@orderPaymentAcceptList')->name('order.payment.accept.list'); 
+        Route::get('delivery/progress/{id}', 'OrderController@orderDeliveryProgress')->name('order.delivery.progress');
+        Route::get('delivery/progress-list', 'OrderController@orderDeliveryProgressList')->name('order.delivery.progress.list');
+        Route::get('delivery/done/{id}', 'OrderController@orderDeliveryDone')->name('order.delivery.done');
+        Route::get('delivery/success-list', 'OrderController@orderDeliverySuccessList')->name('order.delivery.success.list');
+        Route::get('payment/cancel/{id}', 'OrderController@orderPaymentCancel')->name('order.payment.cancel');
+        Route::get('payment/cancel-list', 'OrderController@orderPaymentCancelList')->name('order.payment.cancel.list'); 
     });
 
 });

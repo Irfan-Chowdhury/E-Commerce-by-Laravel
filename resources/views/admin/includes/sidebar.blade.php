@@ -96,6 +96,10 @@
         </a>
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{route('order.new')}}" class="nav-link">New Order</a></li>
+          <li class="nav-item"><a href="{{ route('order.payment.accept.list') }}" class="nav-link">Accept Payments</a></li>
+          <li class="nav-item"><a href="{{ route('order.delivery.progress.list') }}" class="nav-link">Progress Delevery</a></li>
+          <li class="nav-item"><a href="{{ route('order.delivery.success.list') }}" class="nav-link">Delivery Success</a></li>
+          <li class="nav-item"><a href="{{ route('order.payment.cancel.list') }}" class="nav-link">Cancel Orders</a></li>
         </ul>
 
         <!-- Other -->

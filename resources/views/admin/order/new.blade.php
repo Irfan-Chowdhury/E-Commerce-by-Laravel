@@ -26,33 +26,31 @@
               </thead>
               <tbody>
                 @foreach($orders as $key => $row)
-                <tr class="text-center">
-                  <td>{{ $key+1 }}</td>
-                  <td>{{ $row->payment_type }}</td>
-                  <td>{{ $row->blnc_transection }}</td>
-                  <td>{{ $row->quantity }}</td>
-                  <td>${{ $row->subtotal }} </td>
-                  <td>${{ $row->shipping_charge }} </td>
-                  <td>${{ $row->vat }} </td>
-                  <td>${{ $row->total }} </td>
-                  <td>{{ $row->date }} </td>
-                  <td>
-                    @if($row->status == 0)
-                     <span class="badge badge-warning">Pending</span>
-                    @elseif($row->status == 1)
-                    <span class="badge badge-info">Payment Accept</span>
-                    @elseif($row->status == 2) 
-                     <span class="badge badge-info">Progress </span>
-                     @elseif($row->status == 3)  
-                     <span class="badge badge-success">Delevered </span>
-                     @else
-                     <span class="badge badge-danger">Cancel </span>
-                     @endif
-              
-                  <td>
-                  	<a href="{{ route('order.view',$row->id) }}" class="btn btn-sm btn-info">View</a>
-                  </td>
-                </tr>
+                  <tr class="text-center">
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $row->payment_type }}</td>
+                    <td>{{ $row->blnc_transection }}</td>
+                    <td>{{ $row->quantity }}</td>
+                    <td>${{ $row->subtotal }} </td>
+                    <td>${{ $row->shipping_charge }} </td>
+                    <td>${{ $row->vat }} </td>
+                    <td>${{ $row->total }} </td>
+                    <td>{{ $row->date }} </td>
+                    <td>
+                      @if($row->status == 0)
+                        <span class="p-2 badge badge-warning">Pending</span>
+                      @elseif($row->status == 1)
+                        <span class="p-2 badge text-dark" style="background:#ECD262">Payment Accept</span>
+                      @elseif($row->status == 2) 
+                        <span class="p-2 badge" style="background:#1F7F8C">Progress </span>
+                      @elseif($row->status == 3)  
+                        <span class="p-2 badge badge-success">Delevered </span>
+                      @else
+                        <span class="p-2 badge badge-danger">Cancel </span>
+                      @endif
+                    </td>
+                    <td><a href="{{ route('order.view',$row->id) }}" class="btn btn-sm btn-info">View</a></td>
+                  </tr>
                 @endforeach
               </tbody>
             </table>

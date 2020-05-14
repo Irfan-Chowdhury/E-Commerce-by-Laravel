@@ -95,9 +95,13 @@ class PaymentController extends Controller
         $data['blnc_transection']= $charge->balance_transaction;
         $data['quantity']        = Cart::count();
 
-        if (Session::has('coupon')) {
+        if (Session::has('coupon')) 
+        {
+            $data['coupon']      = Session::get('coupon')['name'];
             $data['subtotal']    = Session::get('coupon')['balance'];
-        } else {
+        } 
+        else 
+        {
             $data['subtotal']    = Cart::Subtotal();
         }
 
