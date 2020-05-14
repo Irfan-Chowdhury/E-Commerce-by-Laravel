@@ -22,6 +22,9 @@
 <!--Ajax Wishlist-->
 <link rel="stylesheet" href="sweetalert2.min.css">
 
+<!-- For 'Strip' Payment Gateway -->
+<script src="https://js.stripe.com/v3/"></script>
+
 </head>
 
 <body>

@@ -60,7 +60,7 @@
                                 <th>{{ Cart::count() }} </th>
                             </tr>
                             <tr>
-                                <td>Order Total :</td>
+                                <td>Subtotal :</td>
                                 <th>$ {{ Cart::Subtotal() }} </th>
                             </tr>
                         </table>

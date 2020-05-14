@@ -146,6 +146,8 @@ Route::group(['namespace' => 'User'], function () {
     // --- Paymetn ----
     Route::group(['prefix' => 'payment'], function () { 
         Route::post('/process','PaymentController@paymentProcess')->name('payment.process');
+        Route::post('/stripe/charge/','PaymentController@stripeCharge')->name('payment.stripe.charge');
+
     });
 
 
@@ -188,3 +190,4 @@ Route::group(['namespace' => 'User'], function () {
 // 1. Image Intervention : http://image.intervention.io/
 // 2. Shopping Cart      : https://packagist.org/packages/bumbummen99/shoppingcart
 // 3. Socialite          : https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/
+// 4. "Stripe" Payment Gateway : https://stripe.com/docs/libraries
