@@ -85,6 +85,19 @@
           <li class="nav-item"><a href="{{ route('blog.post.index') }}" class="nav-link">All Post</a></li>
         </ul>
 
+
+        <!-- Order  -->
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">Order</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div>
+        </a>
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{route('order.new')}}" class="nav-link">New Order</a></li>
+        </ul>
+
         <!-- Other -->
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
@@ -95,10 +108,8 @@
         </a>
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{route('newslater')}}" class="nav-link">Newslater</a></li>
-          <li class="nav-item"><a href="page-signin.html" class="nav-link">Signin Page</a></li>
-          <li class="nav-item"><a href="page-signup.html" class="nav-link">Signup Page</a></li>
-          <li class="nav-item"><a href="page-notfound.html" class="nav-link">404 Page Not Found</a></li>
         </ul>
+
       </div><!-- sl-sideleft-menu -->
 
       <br>

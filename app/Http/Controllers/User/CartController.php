@@ -258,18 +258,6 @@ class CartController extends Controller
         return redirect()->route('front.home')->with($notification);
     }
 
-
-    public function PymentPage()
-    {
-        $setting          = DB::table('settings')->first();
-        $shipping_charge  = $setting->shipping_charge;
-        $vat              = $setting->vat;
-        
-        $cart = Cart::content();
-        return view('pages.payment',compact('cart','shipping_charge','vat'));
-    }
-
-
 }
 
 

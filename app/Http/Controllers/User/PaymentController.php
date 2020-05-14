@@ -11,6 +11,17 @@ use Session;
 
 class PaymentController extends Controller
 {
+    public function paymentPage()
+    {
+        $setting          = DB::table('settings')->first();
+        $shipping_charge  = $setting->shipping_charge;
+        $vat              = $setting->vat;
+        
+        $cart = Cart::content();
+        return view('pages.payment',compact('cart','shipping_charge','vat'));
+    }
+
+
     public function paymentProcess(Request $request)
     {
         $data=array();
@@ -79,26 +90,28 @@ class PaymentController extends Controller
         $data  = array();
         $data['user_id']         = Auth::id();
         $data['payment_id']      = $charge->payment_method;
+        $data['payment_type']    = $request->payment_type;
         $data['paying_amount']   = number_format(implode(explode(',',($charge->amount / 100))) , 2) ; // //convert into like- 10500 to 10,500.00 || must be divided by 100 for showing original price otherwise it will show cent formate
         $data['blnc_transection']= $charge->balance_transaction;
+        $data['quantity']        = Cart::count();
+
+        if (Session::has('coupon')) {
+            $data['subtotal']    = Session::get('coupon')['balance'];
+        } else {
+            $data['subtotal']    = Cart::Subtotal();
+        }
+
         $data['stripe_order_id'] = $charge->metadata->order_id;
         $data['shipping_charge'] = $request->shipping_charge;
         $data['vat']             = $request->vat;
         $data['total']           = $request->total;
-        $data['payment_type']    = $request->payment_type;
-        if (Session::has('coupon')) 
-        {
-            $data['subtotal']    = Session::get('coupon')['balance'];
-        } 
-        else 
-        {
-            $data['subtotal']    = Cart::Subtotal();
-        }
-        //return $data;
         $data['status']  = 0;
         $data['date']    = date('d-m-y');
         $data['month']   = date('F');
         $data['year']    = date('Y');
+        
+        // return $data;
+
         // $data['status_code'] = mt_rand(100000, 999999);
         $order_id        = DB::table('orders')->insertGetId($data);
 
@@ -129,7 +142,7 @@ class PaymentController extends Controller
         $shipping['ship_phone']     = $request->ship_phone;
         $shipping['ship_address']   = $request->ship_address;
         $shipping['ship_city']      = $request->ship_city;
-        DB::table('shipping')->insert($shipping);
+        DB::table('shippings')->insert($shipping);
 
         //Then Finally Cart & Session Destroy
 

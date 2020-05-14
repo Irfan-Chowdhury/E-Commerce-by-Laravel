@@ -13,7 +13,7 @@ class CreateShippingTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipping', function (Blueprint $table) {
+        Schema::create('shippings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->string('ship_name')->nullable();

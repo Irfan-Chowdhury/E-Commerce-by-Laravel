@@ -106,6 +106,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('/post/update/{id}','BlogController@update')->name('blog.post.update');
     });
 
+
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('new', 'OrderController@orderNew')->name('order.new');
+        Route::get('view/{id}', 'OrderController@orderView')->name('order.view');
+
+    });
+
 });
 
 
@@ -139,12 +146,12 @@ Route::group(['namespace' => 'User'], function () {
         Route::get('/session/remove','CartController@deleteSessionData')->name('session.remove');
         //Remove all Cart Data
         Route::get('/destroy','CartController@cartDestroy')->name('cart.destroy');
-        Route::get('/payment/page/','CartController@PymentPage')->name('payment.step');
     });
 
 
     // --- Paymetn ----
     Route::group(['prefix' => 'payment'], function () { 
+        Route::get('page','PaymentController@paymentPage')->name('payment.step');
         Route::post('/process','PaymentController@paymentProcess')->name('payment.process');
         Route::post('/stripe/charge/','PaymentController@stripeCharge')->name('payment.stripe.charge');
 

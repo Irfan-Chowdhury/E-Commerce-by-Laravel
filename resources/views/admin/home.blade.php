@@ -101,5 +101,6 @@
           </div><!-- col-3 -->
         </div><!-- row -->
       </div><!-- sl-pagebody --> 
-    </div><!-- sl-mainpanel -->
+      <div style="margin-top: 20%"></div>
+    {{-- </div><!-- sl-mainpanel --> --}}
 @endsection
