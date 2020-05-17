@@ -112,6 +112,7 @@
         </a>
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{route('newslater')}}" class="nav-link">Newslater</a></li>
+          <li class="nav-item"><a href="{{ route('seo') }}" class="nav-link">Seo Settings</a></li>
         </ul>
 
       </div><!-- sl-sideleft-menu -->

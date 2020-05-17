@@ -67,10 +67,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('update/{id}','CouponController@couponUpdate')->name('coupon.update');
     });
 
-    //--Newslater--
-    Route::group(['prefix' => 'newslater'], function () {
-        Route::get('/','NewslaterController@newslater')->name('newslater');
-        Route::get('/delete/{id}','NewslaterController@newslaterDelete')->name('newslater.delete');  
+
+    Route::group(['prefix' => '/'], function () {
+        //--Newslater--
+        Route::get('/newslater','OtherController@newslater')->name('newslater');
+        Route::get('/newslater/delete/{id}','OtherController@newslaterDelete')->name('newslater.delete');  
+        //--SEO--
+        Route::get('/seo', 'OtherController@seo')->name('seo');
+        Route::post('/seo/update/{id}', 'OtherController@seoUpdate')->name('seo.update');
     });
     
     //--Products--
