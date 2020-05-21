@@ -15,8 +15,8 @@
                   <th scope="col">Payment ID</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Date</th>
+                  <th scope="col">Status Code</th>
                   <th scope="col">Status</th>
-                  {{-- <th scope="col">Status </th> --}}
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -27,6 +27,7 @@
                   <td>{{ $row->payment_id }}</td>
                   <td>{{ $row->total }} $</td>
                   <td>{{ $row->date }}</td>
+                  <td>{{ $row->status_code }}</td>
                   <td>
                     @if($row->status == 0)
                       <span class="badge badge-warning">Pending</span>

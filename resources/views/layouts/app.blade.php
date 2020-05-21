@@ -45,6 +45,14 @@
 						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/mail.png')}}" alt=""></div><a href="https://colorlib.com/cdn-cgi/l/email-protection#234542505750424f465063444e424a4f0d404c4e"><span class="__cf_email__" data-cfemail="34525547404755585147745359555d581a575b59">[email&#160;protected]</span></a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
+								<ul class="standard_dropdown ">
+									<li>
+										<a href="#" data-toggle="modal" data-target="#exampleModal">My Order Traking</a>
+									</li>
+								</ul>
+							</div>&nbsp;&nbsp;&nbsp;
+							
+							<div class="top_bar_menu">
 								<ul class="standard_dropdown top_bar_dropdown">
                                     <li>
                                         @if(session()->get('lang') == 'bangla')
@@ -287,6 +295,33 @@ Copyright &copy;<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd
 		</div>
 	</div>
 </div>
+
+
+
+  <!-- Order Tracking Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Your Status Code</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		   <form method="post" action="{{ route('order.tracking') }}">
+			   @csrf
+			   <div class="form-group">
+					<label>Status Code</label>
+					<input type="text" name="status_code" required="" class="form-control" placeholder="Your Order Status Code">
+			   </div>
+			   <br>
+			   <button class="btn btn-danger" type="submit">Track Now</button>                 
+		   </form>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 <script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>

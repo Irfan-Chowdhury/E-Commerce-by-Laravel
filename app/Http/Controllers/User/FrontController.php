@@ -75,4 +75,25 @@ class FrontController extends Controller
 
         return Redirect()->back()->with($notification);
     }
+
+
+    public function orderTracking(Request $request)
+    {
+
+         $track = DB::table('orders')->where('status_code',$request->status_code)->first();
+         
+         if ($track) 
+         {             
+            return view('pages.track',compact('track'));
+         }
+         else
+         {
+            $notification=array(
+                'messege'=>'Status code invalid ',
+                'alert-type'=>'error'
+            );
+            return Redirect()->back()->with($notification);
+         }
+
+    }
 }

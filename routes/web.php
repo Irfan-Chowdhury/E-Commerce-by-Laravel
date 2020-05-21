@@ -132,6 +132,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 Route::group(['namespace' => 'User'], function () {
     Route::get('/', 'FrontController@index')->name('front.home');
     Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
+    Route::post('order/tracking', 'FrontController@orderTracking')->name('order.tracking');
+
 
     //--Wishlist--
     Route::group(['prefix' => '/wishlist'], function () { 
@@ -160,7 +162,7 @@ Route::group(['namespace' => 'User'], function () {
     });
 
 
-    // --- Paymetn ----
+    // --- Payment ----
     Route::group(['prefix' => 'payment'], function () { 
         Route::get('page','PaymentController@paymentPage')->name('payment.step');
         Route::post('/process','PaymentController@paymentProcess')->name('payment.process');
