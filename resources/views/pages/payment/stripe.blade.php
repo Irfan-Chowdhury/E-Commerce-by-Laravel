@@ -130,7 +130,7 @@
 								<!--   extra data -->
 								<input type="hidden" name="shipping_charge" value="{{ $shipping_charge }}">  <!--Come from "paymentProcess()" in paymentController-->
 								<input type="hidden" name="vat" value="{{ $vat }}">
-								@if(Session::has('coupon')) <!--For knowing number_formate() check "cart.blade.php" or CartController -->
+								@if(Session::has('coupon')) <!--For knowing number_formate() check "checkout.blade.php" or PaymentController -->
 									<input type="hidden" name="total" value="{{ number_format(implode(explode(',',Session::get('coupon')['balance'])) + $shipping_charge + $vat , 2) }}">
 								@else
 									<input type="hidden" name="total" value="{{ number_format(implode(explode(',',Cart::Subtotal())) + $shipping_charge + $vat , 2) }}">

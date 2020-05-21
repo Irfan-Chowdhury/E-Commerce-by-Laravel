@@ -124,6 +124,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('payment/cancel-list', 'OrderController@orderPaymentCancelList')->name('order.payment.cancel.list'); 
     });
 
+
+    //Reports
+    Route::group(['prefix' => 'report'], function () {
+        Route::get('today/order', 'ReportController@todayOrder')->name('today.order');
+        Route::get('today/deleverd', 'ReportController@todayDelevered')->name('today.delevered');
+        Route::get('this/month', 'ReportController@thisMonth')->name('this.month');
+        Route::get('search/report', 'ReportController@search')->name('search.report');
+        Route::post('search/by-date', 'ReportController@searchByDate')->name('search.by-date');
+        Route::post('search/by-month', 'ReportController@searchByMonth')->name('search.by-month');
+        Route::post('search/by-year', 'ReportController@searchByYear')->name('search.by-year');
+    });
+    
+
+
 });
 
 
@@ -169,10 +183,6 @@ Route::group(['namespace' => 'User'], function () {
         Route::post('/stripe/charge/','PaymentController@stripeCharge')->name('payment.stripe.charge');
 
     });
-
-
-    
-
 
 
     //--Socialite--

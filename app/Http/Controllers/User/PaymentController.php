@@ -59,7 +59,7 @@ class PaymentController extends Controller
     public function stripeCharge(Request $request) //একই Token এ ডাবল রি-সাবমিট করা যায় না 
     {
 
-        $total = implode(explode(',',$request->total)) ;  //convert into integer like- 10,500.00 to 10500 || already checked coupon exists or not in "strip.blade.php"
+        $total = implode(explode(',',$request->total)) ;  //convert into integer like- 10,500.00 to 10500.00 || already checked coupon exists or not in "strip.blade.php"
 
 
 
@@ -91,7 +91,7 @@ class PaymentController extends Controller
         $data['user_id']         = Auth::id();
         $data['payment_id']      = $charge->payment_method;
         $data['payment_type']    = $request->payment_type;
-        $data['paying_amount']   = number_format(implode(explode(',',($charge->amount / 100))) , 2) ; // //convert into like- 10500 to 10,500.00 || must be divided by 100 for showing original price otherwise it will show cent formate
+        $data['paying_amount']   = number_format(implode(explode(',',($charge->amount / 100))) , 2) ; // //convert into like- 10500.00 to 10,500.00 || must be divided by 100 for showing original price otherwise it will show cent formate
         $data['blnc_transection']= $charge->balance_transaction;
         $data['quantity']        = Cart::count();
 
@@ -116,7 +116,7 @@ class PaymentController extends Controller
         
         // return $data;
 
-        // $data['status_code'] = mt_rand(100000, 999999);
+        $data['status_code'] = mt_rand(100000, 999999);
         $order_id        = DB::table('orders')->insertGetId($data);
 
 

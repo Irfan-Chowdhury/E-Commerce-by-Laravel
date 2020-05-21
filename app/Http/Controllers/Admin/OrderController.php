@@ -133,3 +133,9 @@ class OrderController extends Controller
         return view('admin.order.new',compact('orders'));
     }
 }
+
+// 1 - Pending
+// 2 - Payment Accept
+// 3 - Progress
+// 4 - Delivered
+// else - Cancel
