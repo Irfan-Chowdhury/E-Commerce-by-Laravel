@@ -126,25 +126,39 @@
 							  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 							  		{!! $product->product_details !!}
 							  </div>
+
 							  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 							  	 Product Videos : {!! $product->video_link !!}
 							  </div>
+
+							  <!-- Facebook Comment Box -->
 							  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+								  {{-- <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="10" data-width=""></div> --}}
+								  <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="10" data-width=""></div>
+								  {{-- {{ Request::url() }} <-by using this, commnet for only the specific product url --}}
+							</div>
 
-							  	<div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="8"></div>
-
-							  </div>
 							</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0"></script>
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5dff5c0e258810001231d9cc&product=inline-share-buttons&cms=sop' async='async'></script>
+
+	<!-- Facebook Comment Script -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
+	<!--End Facebook Comment Script -->
+
+	
+	{{-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5dff5c0e258810001231d9cc&product=inline-share-buttons&cms=sop' async='async'></script> --}}
 
 
 <!-- Produc Show -->
 {{-- <script src="{{ asset('frontend/js/product_custom.js') }}"></script> --}}
 @endsection
+
+
+
+<!-- Facebook Comment Plugin -->
+<!-- https://developers.facebook.com/docs/plugins/comments/ -->
