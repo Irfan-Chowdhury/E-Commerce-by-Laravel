@@ -85,8 +85,9 @@
 									<div class="product_fav"><i class="fas fa-heart"></i></div>
 								</div><br>
 								
+								<!-- Share Button || Only working for Live Server  -->
 								<div class="sharethis-inline-share-buttons"></div>
-								
+								<!-- End Share Button -->
 							</form>
 						</div>
 					</div>
@@ -150,9 +151,10 @@
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
 	<!--End Facebook Comment Script -->
 
-	
-	{{-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5dff5c0e258810001231d9cc&product=inline-share-buttons&cms=sop' async='async'></script> --}}
 
+	<!-- Share Button Script -->
+	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec8481f0ea83f0012d81847&product=inline-share-buttons&cms=sop' async='async'></script>
+	<!-- End Share Button Script -->
 
 <!-- Produc Show -->
 {{-- <script src="{{ asset('frontend/js/product_custom.js') }}"></script> --}}
@@ -162,3 +164,8 @@
 
 <!-- Facebook Comment Plugin -->
 <!-- https://developers.facebook.com/docs/plugins/comments/ -->
+
+
+
+<!-- Share Button -->
+<!-- https://platform.sharethis.com/inline-share-buttons  -->
