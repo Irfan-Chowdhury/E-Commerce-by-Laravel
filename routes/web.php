@@ -146,6 +146,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('update/{id}', 'SubAdminController@subAdminUpdate')->name('sub-admin.update');
     });
 
+    //site setting
+    Route::group(['prefix' => 'site/setting'], function () {
+        Route::get('/', 'SiteSettingController@siteSetting')->name('site.setting');
+        Route::post('update/{id}', 'SiteSettingController@siteSettingUpdate')->name('site.setting.update');
+    });
+    
+
 
 });
 

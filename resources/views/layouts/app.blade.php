@@ -1,3 +1,6 @@
+@php
+    $setting = DB::table('site_settings')->first();
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +44,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/phone.png')}}" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/mail.png')}}" alt=""></div><a href="https://colorlib.com/cdn-cgi/l/email-protection#234542505750424f465063444e424a4f0d404c4e"><span class="__cf_email__" data-cfemail="34525547404755585147745359555d581a575b59">[email&#160;protected]</span></a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/phone.png')}}" alt=""></div>{{ $setting->phone_one }}</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/mail.png')}}" alt=""></div><a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 								<ul class="standard_dropdown ">
@@ -106,9 +109,9 @@
 							<div class="logo">
 								<a href="{{url('/')}}">
 									@if(session()->get('lang') == 'bangla')
-										ইরফান 
+										ইরফান শপ
 									@else
-										IRFAN
+										{{ $setting->company_name }}
 									@endif
 									
 								</a>
@@ -202,13 +205,12 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<div class="logo"><a href="#">{{ $setting->company_name }}</a></div>
 						</div>
 						<div class="footer_title">Got Question? Call Us 24/7</div>
-						<div class="footer_phone">+38 068 005 3570</div>
+						<div class="footer_phone">{{ $setting->phone_two}}</div>
 						<div class="footer_contact_text">
-							<p>17 Princess Road, London</p>
-							<p>Grester London NW18JR, UK</p>
+							<p>{{ $setting->company_address }}</p>
 						</div>
 						<div class="footer_social">
 							<ul>
