@@ -135,7 +135,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('search/by-month', 'ReportController@searchByMonth')->name('search.by-month');
         Route::post('search/by-year', 'ReportController@searchByYear')->name('search.by-year');
     });
-    
+
+
+    Route::group(['prefix' => 'sub-admin'], function () {
+        Route::get('all', 'SubAdminController@subAdminAll')->name('sub-admin.all');
+        Route::get('create', 'SubAdminController@subAdminCreate')->name('sub-admin.create');
+        Route::post('store', 'SubAdminController@subAdminStore')->name('sub-admin.store');
+        Route::get('delete/{id}', 'SubAdminController@subAdminDelete')->name('sub-admin.delete');
+        Route::get('edit/{id}', 'SubAdminController@subAdminEdit')->name('sub-admin.edit');
+        Route::post('update/{id}', 'SubAdminController@subAdminUpdate')->name('sub-admin.update');
+    });
 
 
 });
