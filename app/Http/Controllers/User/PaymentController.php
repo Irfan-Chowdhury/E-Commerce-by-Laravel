@@ -164,9 +164,6 @@ class PaymentController extends Controller
     }
 
 
-
-
-
     // ====== For Bangladesh ======
 
     // public function stripeCharge(Request $request) //একই Token এ ডাবল রি-সাবমিট করা যায় না 
@@ -257,6 +254,33 @@ class PaymentController extends Controller
         //     );
         //     return Redirect()->to('/')->with($notification);
     // }
+
+
+
+
+    //In Profile
+    public function successList()
+    {
+        $orders = DB::table('orders')
+                ->where('user_id',Auth::id())
+                ->where('status',3)
+                ->orderBy('id','DESC')
+                ->limit(10)
+                ->get();
+        return view('pages.return_order',compact('orders'));
+    }
+
+
+    public function requestReturn($id)
+    {
+        DB::table('orders')->where('id',$id)->update(['return_order' => 1]);
+
+        $notification =array(
+            'messege'=>'Order Return request done. Please wait for our confirmation email',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
 }
 
 
@@ -290,3 +314,12 @@ class PaymentController extends Controller
 
 // 6. For Checking-> after submit then goto this link
 // https://dashboard.stripe.com/test/payments
+
+
+
+// 7.
+// 1 - Pending
+// 2 - Payment Accept
+// 3 - Progress
+// 4 - Delivered
+// else - Cancel

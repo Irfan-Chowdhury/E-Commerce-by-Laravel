@@ -156,8 +156,8 @@
             </div>
           </a>
           <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="#" class="nav-link">Return Request</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">All Return</a></li>
+            <li class="nav-item"><a href="{{route('return.request')}}" class="nav-link">Return Request</a></li>
+            <li class="nav-item"><a href="{{route('return.all')}}" class="nav-link">All Return</a></li>
           </ul>
         @endif
         

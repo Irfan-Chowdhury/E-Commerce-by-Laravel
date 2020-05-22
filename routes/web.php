@@ -146,6 +146,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('update/{id}', 'SubAdminController@subAdminUpdate')->name('sub-admin.update');
     });
 
+    //Return order of products 
+    Route::group(['prefix' => 'return'], function () {
+        Route::get('request', 'ReturnController@returnRequest')->name('return.request');
+        Route::get('approve/{id}', 'ReturnController@returnApprove')->name('return.approve');
+        Route::get('all', 'ReturnController@returnAll')->name('return.all');
+    });
+    
+
     //site setting
     Route::group(['prefix' => 'site/setting'], function () {
         Route::get('/', 'SiteSettingController@siteSetting')->name('site.setting');
@@ -197,8 +205,12 @@ Route::group(['namespace' => 'User'], function () {
         Route::get('page','PaymentController@paymentPage')->name('payment.step');
         Route::post('/process','PaymentController@paymentProcess')->name('payment.process');
         Route::post('/stripe/charge/','PaymentController@stripeCharge')->name('payment.stripe.charge');
-
+        //Return Order
+        Route::get('success/list/','PaymentController@successList')->name('success.orderlist');
+        Route::get('request/return/{id}','PaymentController@requestReturn')->name('request.return');
     });
+
+
 
 
     //--Socialite--

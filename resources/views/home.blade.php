@@ -60,7 +60,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="{{ route('password.change') }}"> Password Change </a></li>
                 <li class="list-group-item"><a href="#"> Edit Profile </a></li>
-                <li class="list-group-item"><a href="#"> Return Order </a></li>
+                <li class="list-group-item"><a href="{{ route('success.orderlist') }}"> Return Order </a></li>
               </ul>
               <div class="card-body">
                 <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a>
