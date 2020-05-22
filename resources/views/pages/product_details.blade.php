@@ -132,11 +132,12 @@
 							  	 Product Videos : {!! $product->video_link !!}
 							  </div>
 
-							  <!-- Facebook Comment Box -->
 							  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-								  {{-- <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="10" data-width=""></div> --}}
-								  <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="10" data-width=""></div>
-								  {{-- {{ Request::url() }} <-by using this, commnet for only the specific product url --}}
+								<!-- Facebook Comment Box -->
+								
+									{{-- <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="10" data-width=""></div> --}}
+								<div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="10" data-width=""></div>
+								{{-- {{ Request::url() }} <-by using this, commnet for only the specific product url --}}
 							</div>
 
 							</div>

@@ -249,3 +249,5 @@ Route::group(['namespace' => 'User'], function () {
 // 2. Shopping Cart      : https://packagist.org/packages/bumbummen99/shoppingcart
 // 3. Socialite          : https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/
 // 4. "Stripe" Payment Gateway : https://stripe.com/docs/libraries
+// 5. Facebook Comment Plugin : https://developers.facebook.com/docs/plugins/comments/
+// 6. Social Share Button : https://platform.sharethis.com/inline-share-buttons
