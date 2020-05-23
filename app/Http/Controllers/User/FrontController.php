@@ -96,4 +96,25 @@ class FrontController extends Controller
          }
 
     }
+
+    //Product Search
+    public function ProductSearch(Request $request)
+    {
+        $item = $request->search;
+
+        $categories = DB::table('categories')->get();
+        
+        $brands     = DB::table('brands')->get();
+
+        $products   = DB::table('products')
+                    ->select('products.*','brands.brand_name')
+                    ->join('brands','products.brand_id','brands.id')
+                    ->where('product_name','LIKE', "%{$item}%")
+                    ->orWhere('brand_name','LIKE', "%{$item}%")
+                    ->paginate(20);
+
+        // return $products;  
+        
+        return view('pages.search',compact('categories','brands','products'));       
+    }
 }

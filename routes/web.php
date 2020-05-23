@@ -174,6 +174,8 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('/', 'FrontController@index')->name('front.home');
     Route::post('newslater/store', 'FrontController@newslaterStore')->name('newslater.store');
     Route::post('order/tracking', 'FrontController@orderTracking')->name('order.tracking');
+    Route::post('product/search', 'FrontController@ProductSearch')->name('product.search');
+
 
 
     //--Wishlist--
