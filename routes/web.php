@@ -226,6 +226,10 @@ Route::group(['namespace' => 'User'], function () {
     Route::group(['prefix' => 'product'], function () {
         Route::get('/details/{id}/{product_name}', 'ProductController@ProductView');
         Route::post('/add/cart/{id}', 'ProductController@productAddCart')->name('product.add.cart');
+        //Category Wise Products Show 
+        Route::get('category-wise/{id}', 'ProductController@productsCategoryWise')->name('products.category-wise');
+        //Sub-Category Wise Products Show 
+        Route::get('sub-category-wise/{id}', 'ProductController@productsSubCategoryWise')->name('products.sub-category-wise');
 
     });   
 

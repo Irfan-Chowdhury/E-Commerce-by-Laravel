@@ -59,13 +59,13 @@
                         
                         <!-- 2nd Way -->
                         <ul class="cat_menu">
-                            @foreach( $categories as $category)
+                            @foreach( $categories as $category) <!---Check Top-->
                                 <li class="hassubs">
-                                    <a href="#">{{ $category->category_name }} <i class="fa fa-chevron-right"></i> </a>
+                                    <a href="{{route('products.category-wise',$category->id)}}">{{ $category->category_name }} <i class="fa fa-chevron-right"></i> </a>
                                     <ul>
-                                        @foreach($subcategories as $subcategory)
+                                        @foreach($subcategories as $subcategory) <!---Check Top-->
                                             @if ($category->id == $subcategory->category_id)
-                                                <li><a href="#">{{ $subcategory->subcategory_name }}</a></li>
+                                                <li><a href="{{route('products.sub-category-wise',$subcategory->id)}}">{{ $subcategory->subcategory_name }}</a></li>
                                             @endif
                                         @endforeach
                                     </ul>

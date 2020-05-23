@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Admin\Category;
+use App\Model\Admin\Subcategory;
 use App\Model\Admin\Product;
 use DB;
 use Cart;
@@ -73,6 +75,47 @@ class ProductController extends Controller
           );
           return Redirect()->to('/')->with($notification);
         }
+    }
+
+
+    // Category Wise Products Show 
+    public function productsCategoryWise($id)
+    {
+        $products = DB::table('products')
+                  ->where('category_id',$id)
+                  ->paginate(30);
+
+        $category = Category::find($id);
+        
+        $brands   = DB::table('products')
+                  ->select('brand_id')
+                  ->where('category_id',$id)
+                  ->groupBy('brand_id')
+                  ->get();
+         
+        return view('pages.products-category-wise',compact('products','category','brands'));
+    }
+
+    // Sub-Category Wise Products Show 
+    public function productsSubCategoryWise($id)
+    {
+        $products     = DB::table('products')
+                      ->where('subcategory_id',$id)
+                      ->paginate(30);
+
+        $subcategory  = DB::table('subcategories')
+                      ->join('categories','categories.id','subcategories.category_id')
+                      ->select('subcategories.*','categories.category_name')
+                      ->where('subcategories.id',$id)
+                      ->get();
+        
+        $brands       = DB::table('products')
+                      ->select('brand_id')
+                      ->where('subcategory_id',$id)
+                      ->groupBy('brand_id')
+                      ->get();
+         
+         return view('pages.products-sub-category-wise',compact('products','subcategory','brands'));
     }
 }
 
