@@ -90,14 +90,19 @@ class OrderController extends Controller
     public function orderDeliveryDone($id)
     {
 
-        // $product = DB::table('order_details')->where('order_id',$id)->get();
+        // First Delete 'products' Quantity according to 'order_details'
+        $order_details = DB::table('order_details')->where('order_id',$id)->get();
 
-        // foreach ($product as $row) {
-        //     DB::table('products')
-        //       ->where('id',$row->product_id)
-        //       ->update(['product_quantity' => DB::raw('product_quantity -'.$row->quantity)]);
-        // }
+        foreach ($order_details as $row) {
+            DB::table('products')
+                ->where('id',$row->product_id)
+                ->update(['product_quantity' => DB::raw('product_quantity -'.$row->quantity)]);
+        }
 
+        // products টেবিলের product_quantity থেকে order_details এর quantity বিয়োগ 
+
+
+        // Update Order
         DB::table('orders')->where('id',$id)->update(['status' => 3]);
         
         $notification=array(

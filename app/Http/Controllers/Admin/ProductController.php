@@ -366,6 +366,19 @@ class ProductController extends Controller
             return Redirect()->route('product.index')->with($notification);
         }
     }
+
+
+    //Product Stock
+    public function stock()
+    {
+        $product = DB::table('products')
+                     ->select('products.*','categories.category_name')
+                     ->join('categories','products.category_id','categories.id')
+                     ->orderBy('id','DESC')
+                     ->get();
+        return view('admin.stock.stock',compact('product'));
+
+    }
 }
 
 

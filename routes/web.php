@@ -91,6 +91,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('edit/{id}','ProductController@productEdit')->name('product.edit');
         Route::post('update/withoutphoto/{id}','ProductController@productUpdateWithoutPhoto')->name('product.update.without_photo');
         Route::post('update/photo/{id}','ProductController@productPhotoUpdate')->name('product.update.photo');  
+        //Product Stock
+        Route::get('stock', 'ProductController@stock')->name('product.stock');
+
     });
 
     //--Blog--
