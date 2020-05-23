@@ -256,3 +256,4 @@ Route::group(['namespace' => 'User'], function () {
 // 4. "Stripe" Payment Gateway : https://stripe.com/docs/libraries
 // 5. Facebook Comment Plugin : https://developers.facebook.com/docs/plugins/comments/
 // 6. Social Share Button : https://platform.sharethis.com/inline-share-buttons
+// 8. Mail Command: php artisan make:mail InvoiceMail

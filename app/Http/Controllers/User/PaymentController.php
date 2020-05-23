@@ -8,6 +8,8 @@ use DB;
 use Auth;
 use Cart;
 use Session;
+use Mail;
+use App\Mail\InvoiceMail;
 
 class PaymentController extends Controller
 {
@@ -94,17 +96,13 @@ class PaymentController extends Controller
         $data['paying_amount']   = number_format(implode(explode(',',($charge->amount / 100))) , 2) ; // //convert into like- 10500.00 to 10,500.00 || must be divided by 100 for showing original price otherwise it will show cent formate
         $data['blnc_transection']= $charge->balance_transaction;
         $data['quantity']        = Cart::count();
-
-        if (Session::has('coupon')) 
-        {
+        if (Session::has('coupon')){
             $data['coupon']      = Session::get('coupon')['name'];
             $data['subtotal']    = Session::get('coupon')['balance'];
         } 
-        else 
-        {
+        else {
             $data['subtotal']    = Cart::Subtotal();
         }
-
         $data['stripe_order_id'] = $charge->metadata->order_id;
         $data['shipping_charge'] = $request->shipping_charge;
         $data['vat']             = $request->vat;
@@ -115,9 +113,13 @@ class PaymentController extends Controller
         $data['year']    = date('Y');
         
         // return $data;
-
         $data['status_code'] = mt_rand(100000, 999999);
         $order_id        = DB::table('orders')->insertGetId($data);
+        
+        // ============================= Mail send to User ==================
+        
+        $email = Auth::user()->email;
+        Mail::to($email)->send(new invoiceMail($data)); 
 
 
         // ============ insert data into "order_deatils" table ============
