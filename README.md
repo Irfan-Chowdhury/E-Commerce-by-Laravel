@@ -8,23 +8,56 @@
 
 ## Features
 
+- Authentication
 - Category/Subcategory
 - Brand
+- Products setup
+- Multiple image upload
 - Discount
 - Coupon
-- Search
-- Multiple image upload
-- Stock out and stock quantity
-- Multiple language (Bangla English)
-- Mail (QUEUE)
-- Payment Gateway of [International-Card] , [Paypal] and [IDAL-Payment] 
-- By one get one /Hot deal
+- Wishlist
+- Cart
+- Checkout
+- Order
 - Report
-- User role
-- Event listener
-- Order tracking
 - Return order
-- Telescope
-- Passport /JWT
+- Stock management
+- Order tracking
+- Mail (QUEUE)
+- Payment Gateway [Strip] 
+- User role
+- Newslater
+- SEO
+- Blog
+- Multiple language (Bangla/English)
+- Search
+- By one get one / Hot deal / New Featured / Trend
 - Socialite
-- Scout
+- Settings
+
+## Database Schema
+
+- Visit this - https://drawsql.app/irfan-chy/diagrams/e-commerce?fbclid=IwAR3WV8XonpNhs9bG3KfHQwEmHXe6JlYW8d1rjl66EifmLGQEvMAM4wAHD7M
+
+## Packages
+
+- Image Intervention : http://image.intervention.io/
+- Shopping Cart      : https://packagist.org/packages/bumbummen99/shoppingcart
+- Socialite          : https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/
+- "Stripe" Payment Gateway : https://stripe.com/docs/libraries
+- Facebook Comment Plugin : https://developers.facebook.com/docs/plugins/comments/
+- Social Share Button : https://platform.sharethis.com/inline-share-buttons
+- Alert (sweetalert2) : https://sweetalert2.github.io/
+- Mail Create, Run: **_php artisan make:mail InvoiceMail_**
+
+## After clone or download this project, please follow the instructions
+
+- Clone the repository with **_git clone https://github.com/Irfan-Chowdhury/E-Commerce-by-Laravel.git_**
+- Run **_cd E-Commerce-by-Laravel_**
+- Copy **.env.example** file to **.env** and edit **Database** credentials there
+- Run **_composer install_**
+- Run **_php artisan key:generate_**
+- Run **_php artisan migrate_**
+- Run **_npm install_**
+- Run **_php artisan serve_**
+

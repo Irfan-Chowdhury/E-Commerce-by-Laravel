@@ -15,8 +15,8 @@ class CreatePostCategoriesTable extends Migration
     {
         Schema::create('post_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category_name_en');
-            $table->string('category_name_bn');
+            $table->string('category_name_en')->nullable();  //nullable
+            $table->string('category_name_bn')->nullable();
             $table->timestamps();
         });
     }

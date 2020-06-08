@@ -18,12 +18,12 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('post_category_id');
             $table->string('post_title_en');
             $table->string('post_title_bn');
-            $table->string('post_image');
+            $table->string('post_image')->nullable();
             $table->text('details_en');
             $table->text('details_bn');
             $table->timestamps();
 
-            // $table->foreign('post_category_id')->references('id')->on('post_categories');
+            $table->foreign('post_category_id')->references('id')->on('post_categories');
         });
     }
 

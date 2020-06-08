@@ -16,16 +16,12 @@ class CreateShippingTable extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
-            $table->string('ship_name'); 
-            $table->string('ship_phone'); 
-            $table->string('ship_email'); 
-            $table->string('ship_address'); 
-            $table->string('ship_city'); 
+            $table->string('ship_name')->nullable();
+            $table->string('ship_phone')->nullable();
+            $table->string('ship_email')->nullable();
+            $table->string('ship_address')->nullable();
+            $table->string('ship_city')->nullable();
             $table->timestamps();
-
-
-            $table->foreign('order_id')->references('id')->on('orders');
-
         });
     }
 

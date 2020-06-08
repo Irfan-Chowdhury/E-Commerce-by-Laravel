@@ -18,16 +18,16 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
-            $table->string('product_name')->unique();
-            $table->string('product_code')->unique();
+            $table->string('product_name');
+            $table->string('product_code');
             $table->integer('product_quantity');
             $table->text('product_details');
-            $table->string('product_color')->nullable();
-            $table->string('product_size')->nullable();
+            $table->string('product_color');
+            $table->string('product_size');
             $table->integer('selling_price');
             $table->integer('discount_price')->nullable();
             $table->string('video_link')->nullable();
-            $table->integer('main_slider')->default(0);
+            $table->integer('main_slider')->nullable();
             $table->integer('hot_deal')->nullable();
             $table->integer('best_rated')->nullable();
             $table->integer('mid_slider')->nullable();
@@ -39,15 +39,6 @@ class CreateProductsTable extends Migration
             $table->string('image_three')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
-
-
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories');
-            $table->foreign('brand_id')->references('id')->on('brands');
-
-            // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            // $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
-            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 

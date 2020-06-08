@@ -21,21 +21,19 @@ class CreateOrdersTable extends Migration
             $table->string('paying_amount')->nullable(); 
             $table->string('blnc_transection')->nullable(); 
             $table->string('stripe_order_id')->nullable();
-            $table->string('coupon')->nullable(); 
+            $table->integer('coupon')->nullable(); 
             $table->integer('quantity')->nullable(); 
             $table->string('subtotal')->nullable(); 
             $table->string('shipping_charge')->nullable();  
-            $table->integer('vat')->nullable(); 
+            $table->string('vat')->nullable(); //integer
             $table->string('total')->nullable(); 
-            $table->integer('status')->nullable()->default(0); 
-            $table->integer('return_order')->nullable()->default(0); 
+            $table->integer('status')->nullable()->default(0); //integer
+            $table->integer('return_order')->nullable()->default(0); //integer
             $table->string('month')->nullable();
             $table->string('date')->nullable();
             $table->string('year')->nullable();
             $table->string('status_code')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
