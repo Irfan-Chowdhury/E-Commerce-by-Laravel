@@ -1,10 +1,3 @@
-## Please Visit the Demo Project: 
-
-- Site : <a href="http://e-commerce.irfanchowdhury.xyz">www.e-commerce.irfanchowdhury.xyz</a> &nbsp; <i>[Login with (username & password) : **_user@gmail.com_**]</i>
- 
-- Admin-Panel : <a href="http://e-commerce.irfanchowdhury.xyz/admin">www.e-commerce.irfanchowdhury.xyz/admin</a> &nbsp; <i>[Login with (username & password) : **_admin@gmail.com_**]</i>
-
-
 <div align="center">
   
 # Laravel E-Commerce
@@ -12,6 +5,12 @@
 </div>
 
 <p align="center"><img src="https://doofindermedia.s3.amazonaws.com/blog/2018/05/07/085124-que-es-ecommerce.jpg"></p>
+
+## Please Visit the Demo Project: 
+
+- Site : <a href="http://e-commerce.irfanchowdhury.xyz">www.e-commerce.irfanchowdhury.xyz</a> &nbsp; <i>[Login with (username & password) : **_user@gmail.com_**]</i>
+ 
+- Admin-Panel : <a href="http://e-commerce.irfanchowdhury.xyz/admin">www.e-commerce.irfanchowdhury.xyz/admin</a> &nbsp; <i>[Login with (username & password) : **_admin@gmail.com_**]</i>
 
 ## Features
 
