@@ -1,8 +1,8 @@
 ## Please Visit the Demo Project: 
 
-- Site: http://e-commerce.irfanchowdhury.xyz  [Login with (username & password) : **_user@gmail.com_**]
+- Site : http://e-commerce.irfanchowdhury.xyz &nbsp; [Login with (username & password) : **_user@gmail.com_**]
  
-- Admin-Panel :http://e-commerce.irfanchowdhury.xyz/admin  [Login with (username & password) : **_admin@gmail.com_**]
+- Admin-Panel : http://e-commerce.irfanchowdhury.xyz/admin &nbsp; [Login with (username & password) : **_admin@gmail.com_**]
 
 
 <div align="center">
