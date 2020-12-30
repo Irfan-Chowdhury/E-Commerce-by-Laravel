@@ -1,8 +1,8 @@
 ## Please Visit the Demo Project: 
 
-- Site : http://e-commerce.irfanchowdhury.xyz &nbsp; [Login with (username & password) : **_user@gmail.com_**]
+- Site : <a href="http://e-commerce.irfanchowdhury.xyz">www.e-commerce.irfanchowdhury.xyz</a> &nbsp; <i>[Login with (username & password) : **_user@gmail.com_**]</i>
  
-- Admin-Panel : http://e-commerce.irfanchowdhury.xyz/admin &nbsp; [Login with (username & password) : **_admin@gmail.com_**]
+- Admin-Panel : <a href="http://e-commerce.irfanchowdhury.xyz/admin">www.e-commerce.irfanchowdhury.xyz/admin</a> &nbsp; <i>[Login with (username & password) : **_admin@gmail.com_**]</i>
 
 
 <div align="center">
